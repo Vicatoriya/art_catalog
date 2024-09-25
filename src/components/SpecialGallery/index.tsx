@@ -1,7 +1,7 @@
-import React from "react";
-import { Gallery, GalleryHeading, GalleryGrid } from "./styled";
-import GalleryItem from "./GalleryItem";
-import Pagination from "./Pagination";
+import React from 'react';
+import { Gallery, GalleryHeading, GalleryGrid } from './styled';
+import GalleryItem from './GalleryItem';
+import Pagination from './Pagination';
 export default function SpecialGallery() {
   return (
     <Gallery>
