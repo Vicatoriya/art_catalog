@@ -1,19 +1,14 @@
 import React from 'react';
 import "./index.css";
 import Header from "./components/Header";
+import Footer from './components/Footer';
+import Search from './components/Search';
 function App() {
   return (
     <div>
     <Header/>
-
+    <Search/>
     <main>
-        <section className="search-section">
-            <h2>Let’s Find Some <span>Art</span> Here!</h2>
-            <div className="search-bar">
-                <input type="text" placeholder="Search Art, Artist, Work..."/>
-                <button>🔍</button>
-            </div>
-        </section>
 
         <section className="gallery">
             <h3>Our special gallery</h3>
@@ -58,10 +53,7 @@ function App() {
             </div>
         </section>
     </main>
-    <footer>
-        <p>Museum of Art ©</p>
-        <p>MODSEN</p>
-    </footer>
+    <Footer/>
     </div>
   );
 }

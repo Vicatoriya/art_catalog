@@ -1,13 +1,11 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo_light.png";
 import fav from "../../assets/fav.png";
 import { Container, A, Favorites } from "./styled";
 export default function Header() {
   return (
     <Container>
-      <div className="logo">
-        <img src={logo} alt="Logo" />
-      </div>
+      <img src={logo} alt="Logo" />
       <Favorites>
         <img src={fav} alt="Icon" />
         <A href="#">Your favorites</A>
