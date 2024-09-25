@@ -18,21 +18,84 @@ main {
 
 
 
-.gallery, .other-works {
+ .other-works {
     margin-bottom: 50px;
 }
 
-.gallery h3, .other-works h3 {
+ .other-works h3 {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.gallery-grid, .works-grid {
+ .works-grid {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
+
+
+
+
+
+
+
+
+.pagination a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.pagination a.page-number {
+    color: #333;
+}
+
+.pagination a.active {
+    background-color: orange;
+    color: white;
+    border-color: orange;
+}
+
+.pagination a:hover {
+    background-color: orange;
+    color: white;
+}
+
+.pagination .next-page {
+    font-size: 16px;
+    padding: 8.5px 11px;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #000;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.pagination .next-page:hover {
+    background-color: orange;
+    color: white;
+    border-color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .gallery-item, .work-item {
     text-align: center;

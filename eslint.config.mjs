@@ -1,26 +1,32 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import pr from "eslint-config-prettier";
-
-
-export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  { "settings": {
-    "react": {
-      "version": "detect"
-    }
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
   },
-  "rules": {
-    "react/react-in-jsx-scope": ["off"],
-    "react/jsx-uses-react": ["off"],
-    "react/jsx-props-no-spreading": ["warn"],
-    "react/no-unescaped-entities": ["off"]
-  }
-  }
-];
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+
+  ],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'react/react-in-jsx-scope': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
+};
