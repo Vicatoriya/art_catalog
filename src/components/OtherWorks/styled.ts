@@ -1,27 +1,8 @@
 import styled from 'styled-components';
 
-// export const Container = styled.div`
-//   margin-bottom: 50px;
-// `;
-
-export const Container = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding: 20px;
-  background-color: #333;
-  color: white;
-  margin-bottom: 50px;
-`;
-
-export const A = styled.a`
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  margin-left: 5px;
-`;
-
-export const Favorites = styled.div`
-  display: flex;
-  align-item: center;
 `;
