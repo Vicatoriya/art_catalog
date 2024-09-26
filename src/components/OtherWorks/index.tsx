@@ -5,23 +5,23 @@ export default function OtherWorks() {
   return (
     <Container>
       <Heading text="Other works for you" />
-      <div className="works-grid">
-        <div className="work-item">
-          <img src="charles-v.jpg" alt="Charles V" />
-          <p>
-            Charles V, bust length... <br />
-            <span>Giovanni Britto</span>
-          </p>
-          <span className="public">Public</span>
+      <div className="card">
+        <img src="image.png" alt="Charles V" className="card-image" />
+        <div className="card-info">
+          <h2>Charles V, bust length...</h2>
+          <p>Giovanni Britto</p>
+          <p className="status">Public</p>
         </div>
-        <div className="work-item">
-          <img src="charles-v.jpg" alt="Charles V" />
-          <p>
-            Charles V, bust length... <br />
-            <span>Giovanni Britto</span>
-          </p>
-          <span className="public">Public</span>
+        <div className="bookmark"></div>
+      </div>{' '}
+      <div className="card">
+        <img src="image.png" alt="Charles V" className="card-image" />
+        <div className="card-info">
+          <h2>Charles V, bust length...</h2>
+          <p>Giovanni Britto</p>
+          <p className="status">Public</p>
         </div>
+        <div className="bookmark"></div>
       </div>
     </Container>
   );

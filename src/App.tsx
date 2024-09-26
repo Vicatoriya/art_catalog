@@ -2,13 +2,17 @@ import React from 'react';
 import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Home from './pages/Home';
+import { GlobalStyle } from './constants/GlobalStyle';
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </HashRouter>
+    <>
+      <GlobalStyle />
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </HashRouter>
+    </>
     // <div>
     // <Header/>
     // <Search/>

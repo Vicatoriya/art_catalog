@@ -7,13 +7,13 @@ import SpecialGallery from '../components/SpecialGallery';
 import OtherWorks from '../components/OtherWorks';
 export default function Home() {
   return (
-    <div>
+    <>
       <Header />
       <Search />
       <SpecialGallery />
       <OtherWorks />
       <main></main>
       <Footer />
-    </div>
+    </>
   );
 }

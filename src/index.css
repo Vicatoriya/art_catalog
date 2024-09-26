@@ -1,89 +1,54 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #f9f9f9;
-}
-
-main {
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding: 20px;
 }
 
-.gallery-grid,
-.works-grid {
+.card {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.pagination a {
-  text-decoration: none;
-  display: inline-block;
-  margin: 0 5px;
-  padding: 10px 15px;
-  color: #000;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
 }
 
-.pagination a.page-number {
+.card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.card-info {
+  flex-grow: 1;
+}
+
+.card-info h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
   color: #333;
 }
 
-.pagination a.active {
-  background-color: orange;
-  color: white;
-  border-color: orange;
+.card-info p {
+  font-size: 14px;
+  color: #666;
 }
 
-.pagination a:hover {
-  background-color: orange;
-  color: white;
+.card-info .status {
+  font-weight: bold;
+  color: #333;
 }
 
-.pagination .next-page {
-  font-size: 16px;
-  padding: 10px 15px;
-  background-color: white;
-  border: 1px solid #ddd;
-  color: #000;
-  display: inline-block;
-  border-radius: 6px;
-}
-
-.pagination .next-page:hover {
-  background-color: orange;
-  color: white;
-  border-color: orange;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
-
-footer p {
-  margin: 5px 0;
+.bookmark {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  background-color: #f8c231;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }
