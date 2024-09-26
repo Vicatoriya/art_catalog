@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.header`
   display: flex;
@@ -7,6 +7,7 @@ export const Container = styled.header`
   padding: 20px;
   background-color: #333;
   color: white;
+  margin-bottom: 50px;
 `;
 
 export const A = styled.a`

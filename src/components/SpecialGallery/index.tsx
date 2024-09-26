@@ -1,11 +1,12 @@
 import React from 'react';
-import { Gallery, GalleryHeading, GalleryGrid } from './styled';
+import { Gallery, GalleryGrid } from './styled';
 import GalleryItem from './GalleryItem';
 import Pagination from './Pagination';
+import Heading from '../Heading';
 export default function SpecialGallery() {
   return (
     <Gallery>
-      <GalleryHeading>Our special gallery</GalleryHeading>
+      <Heading text="Our special gallery" />
       <GalleryGrid>
         <GalleryItem />
         <GalleryItem />

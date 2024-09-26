@@ -6,4 +6,5 @@ export const Container = styled.footer`
   align-items: center;
   padding: 20px 0 20px;
   background-color: rgba(255, 255, 255, 1);
+  margin-top: 50px;
 `;
