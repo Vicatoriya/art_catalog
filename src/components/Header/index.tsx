@@ -8,8 +8,9 @@ export default function Header() {
       <img src={logo} alt="Logo" />
       <Favorites>
         <img src={fav} alt="Icon" />
-        <A href="#">Your favorites</A>
+        <A href="/#favorites">Your favorites</A>
       </Favorites>
+      <A href="/#image">Image</A>
     </Container>
   );
 }

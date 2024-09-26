@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styled';
 import ImgInfo from '../../ImgInfo';
-import image from '../../../assets/image.png';
+import image from '../../../assets/person.png';
 export default function ImgCard() {
   return (
     <Container>

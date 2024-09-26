@@ -1,6 +1,6 @@
 import React from 'react';
 import { GalleryItemInfo, Span, FavIcon } from './styled';
-import fav from '../../assets/fav.png';
+import fav from '../../assets/fav_bright.png';
 export default function ImgInfo() {
   return (
     <>

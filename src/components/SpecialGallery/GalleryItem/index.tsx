@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Image } from './styled';
 import ImgInfo from '../../ImgInfo';
-import image from '../../../assets/image.png';
+import image from '../../../assets/person.png';
 import fav from '../../../assets/fav.png';
 export default function GalleryItem() {
   return (

@@ -29,7 +29,7 @@ export const CardInfo = styled.div`
 
   & p {
     font-size: 14px;
-    color: #f8c231;
+    color: rgba(241, 121, 0, 1);
   }
   & #status {
     font-weight: bold;

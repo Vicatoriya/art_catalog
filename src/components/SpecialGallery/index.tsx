@@ -2,7 +2,7 @@ import React from 'react';
 import { Gallery, GalleryGrid } from './styled';
 import GalleryItem from './GalleryItem';
 import Pagination from './Pagination';
-import Heading from '../Heading';
+import Heading from '../StandardHeading';
 export default function SpecialGallery() {
   return (
     <Gallery>
