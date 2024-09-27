@@ -1,5 +1,6 @@
 import React from 'react';
-import { GalleryItemInfo, Span, FavIcon } from './styled';
+import { GalleryItemInfo, Span } from './styled';
+import FavIcon from '../FavIcon';
 import fav from '../../assets/fav_bright.png';
 export default function ImgInfo() {
   return (
@@ -11,9 +12,7 @@ export default function ImgInfo() {
         </p>
         <Span>Public</Span>
       </GalleryItemInfo>
-      <FavIcon>
-        <img src={fav} alt="Add to favorites" />
-      </FavIcon>
+      <FavIcon />
     </>
   );
 }

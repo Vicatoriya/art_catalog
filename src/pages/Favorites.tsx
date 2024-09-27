@@ -1,5 +1,4 @@
 import React from 'react';
-import '../index.css';
 import ImgList from '../components/ImgList';
 import Heading from '../components/StandardHeading';
 import StyledHeading from '../components/StyledHeading';
