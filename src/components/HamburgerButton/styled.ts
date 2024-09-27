@@ -10,17 +10,17 @@ export const MenuButton = styled.button`
   padding: 12px;
   background: none;
 
-  span {
+  & span {
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
-  :focus {
-    border: medium none rgb(111, 255, 176);
-    box-shadow: rgb(111, 255, 176) 0 0 2px 2px;
+  &:focus {
+    border: medium none white;
+    box-shadow: white 0 0 2px 2px;
     outline: 0;
   }
 
-  :hover {
+  &:hover {
     span:nth-of-type(1) {
       width: 33px;
     }

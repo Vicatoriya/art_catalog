@@ -2,15 +2,14 @@ import React, { useRef, useContext } from 'react';
 import useOnClickOutside from '../../constants/onClickOutside';
 import { MenuContext } from '../../constants/navState';
 import HamburgerButton from '../HamburgerButton';
-import { SideMenu } from '../SideMenu';
+import SideMenu from '../SideMenu';
 import { Navbar } from './styled';
 import logo from '../../assets/logo_light.png';
 
-const MainMenu = () => {
+export default function MainMenu() {
   const node = useRef<HTMLElement>(null);
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
   useOnClickOutside(node, () => {
-    // Only if menu is open
     if (isMenuOpen) {
       toggleMenuMode();
     }
@@ -25,6 +24,4 @@ const MainMenu = () => {
       <SideMenu />
     </header>
   );
-};
-
-export default MainMenu;
+}
