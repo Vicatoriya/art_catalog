@@ -6,14 +6,6 @@ import NavState from '../../constants/navState';
 import MainMenu from '../MainMenu';
 export default function Header() {
   return (
-    // <Container>
-    //   <img src={logo} alt="Logo" />
-    //   <Favorites>
-    //     <img src={fav} alt="Icon" />
-    //     <A href="/#favorites">Your favorites</A>
-    //   </Favorites>
-    //   <A href="/#image">Image</A>
-    // </Container>
     <NavState>
       <MainMenu />
     </NavState>

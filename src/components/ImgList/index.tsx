@@ -3,10 +3,10 @@ import { Container } from './styled';
 import Heading from '../StandardHeading';
 import ImgCard from './ImgCard';
 
-type Props = {
+interface ImgListProps {
   imgAmount: number;
-};
-export default function ImgList(props: Props) {
+}
+export default function ImgList(props: ImgListProps) {
   const cards: JSX.Element[] = [];
   for (let i = 0; i < props.imgAmount; i++) {
     cards.push(<ImgCard />);

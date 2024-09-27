@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { MenuContext } from '../../constants/navState';
 import { Menu, MenuLink } from './styled';
 
