@@ -14,13 +14,15 @@ root.render(
   <React.StrictMode>
     <GlobalStyle />
     <Header />
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/image" element={<ImagePage />} />
-      </Routes>
-    </HashRouter>
+    <main>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/image" element={<ImagePage />} />
+        </Routes>
+      </HashRouter>
+    </main>
     <Footer></Footer>
   </React.StrictMode>
 );

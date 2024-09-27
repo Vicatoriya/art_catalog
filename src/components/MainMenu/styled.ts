@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 export const Navbar = styled.div`
   display: flex;
-  position: relative;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
   box-sizing: border-box;
   outline: currentcolor none medium;
   max-width: 100%;
-  margin: 0px;
+  margin: 0;
   align-items: center;
   background-color: #333;
   color: rgb(248, 248, 248);

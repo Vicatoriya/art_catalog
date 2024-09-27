@@ -6,7 +6,7 @@ interface MenuProps {
 }
 
 export const Menu = styled.nav<MenuProps>`
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0px;

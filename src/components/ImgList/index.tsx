@@ -9,7 +9,7 @@ interface ImgListProps {
 export default function ImgList(props: ImgListProps) {
   const cards: JSX.Element[] = [];
   for (let i = 0; i < props.imgAmount; i++) {
-    cards.push(<ImgCard />);
+    cards.push(<ImgCard key={i} />);
   }
 
   return (
