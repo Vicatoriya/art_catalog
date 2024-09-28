@@ -1,38 +1,57 @@
 import React from 'react';
-import image from '../../assets/person.png';
 import { Container, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '../FavIcon';
-export default function Header() {
+export interface ImageProps {
+  id: string;
+  imageURL: string;
+  title: string;
+  artist: string;
+  date: string;
+  dimensions: string;
+  place: string;
+  credit_line: string;
+  medium: string;
+}
+export default function Image(props: ImageProps) {
+  const addToFavClickHandler = () => {
+    if (sessionStorage.getItem(props.id) != null) {
+      sessionStorage.removeItem(props.id);
+    } else {
+      sessionStorage.setItem(props.id, '');
+    }
+  };
+
+  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <Container>
       <ImageSection>
-        <img src={image} alt="Charles V" id="main" />
-        <FavIcon />
+        <img src={props.imageURL} alt={props.title} id="main" />
+        <FavIcon
+          clickHandler={addToFavClickHandler}
+          isFavorited={isFavorited}
+        />
       </ImageSection>
       <InfoSection>
         <div>
-          <h2>Charles V, bust length, holding a sword, facing right</h2>
-          <h3>Giovanni Britto</h3>
-          <p id="date">1535–45</p>
+          <h2>{props.title}</h2>
+          <h3>{props.artist}</h3>
+          <p id="date">{props.date}</p>
         </div>
         <div>
           <h2>Overview</h2>
           <Overview>
             <li>
-              <strong>Artist nationality:</strong> German
+              <strong>Artist nationality:</strong> {props.place}
             </li>
             <li>
-              <strong>Dimensions:</strong> Sheet: 19 3/8 x 13 11/16 in. (49.2 x
-              34.8 cm)
+              <strong>Dimensions:</strong> {props.dimensions}
             </li>
             <li>
-              <strong>Credit Line:</strong> Rogers Fund, 1917
+              <strong>Medium:</strong> {props.medium}
             </li>
             <li>
-              <strong>Repository:</strong> Metropolitan Museum of Art, New York,
-              NY
+              <strong>Credit Line:</strong> {props.credit_line}
             </li>
-            <li>Public</li>
           </Overview>
         </div>
       </InfoSection>

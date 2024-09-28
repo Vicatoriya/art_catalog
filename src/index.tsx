@@ -13,14 +13,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <Header />
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/image" element={<ImagePage />} />
+        <Route path="/image/:id" element={<ImagePage />} />
       </Routes>
     </HashRouter>
-    <Footer></Footer>
   </React.StrictMode>
 );

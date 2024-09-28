@@ -6,8 +6,18 @@ interface ImgCardInfoProps {
   artist: string;
   title: string;
   date: string;
+  id: string;
 }
 export default function ImgCardInfo(props: ImgCardInfoProps) {
+  const addToFavClickHandler = () => {
+    if (sessionStorage.getItem(props.id) != null) {
+      sessionStorage.removeItem(props.id);
+    } else {
+      sessionStorage.setItem(props.id, '');
+    }
+  };
+
+  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <>
       <GalleryItemInfo>
@@ -17,7 +27,7 @@ export default function ImgCardInfo(props: ImgCardInfoProps) {
         </p>
         <Span>{props.date}</Span>
       </GalleryItemInfo>
-      <FavIcon />
+      <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
     </>
   );
 }

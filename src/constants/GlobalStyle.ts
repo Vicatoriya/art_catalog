@@ -8,4 +8,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  #root{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  justify-content:space-between;
+  }
 `;

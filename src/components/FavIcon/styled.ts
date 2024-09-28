@@ -5,7 +5,7 @@ export const Icon = styled.div<{ isActive: boolean }>`
   top: 15px;
   right: 15px;
   background-color: ${({ isActive }) =>
-    isActive ? 'rgba(251, 215, 178, 0.3)' : 'white'};
+    isActive ? 'rgba(251, 215, 178, 0.8)' : 'white'};
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 2.5px 3px 0 3px;
