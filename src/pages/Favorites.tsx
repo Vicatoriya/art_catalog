@@ -11,7 +11,7 @@ export default function Home() {
         text_end=""
       />
       <Heading text="Your favorites list"></Heading>
-      <ImgList imgAmount={9} />
+      {/* <ImgList imgAmount={9} /> */}
     </>
   );
 }

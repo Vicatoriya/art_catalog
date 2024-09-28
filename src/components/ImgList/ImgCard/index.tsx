@@ -1,12 +1,23 @@
 import React from 'react';
 import { Container } from './styled';
-import ImgInfo from '../../ImgInfo';
+import ImgCardInfo from '../../ImgCardInfo';
 import image from '../../../assets/person.png';
-export default function ImgCard() {
+
+interface ImgCardProps {
+  imgURL: string;
+  artist: string;
+  title: string;
+  date: string;
+}
+export default function ImgCard(props: ImgCardProps) {
   return (
     <Container>
-      <img id="main_pic" src={image} alt="Charles V" />
-      <ImgInfo />
+      <img id="main_pic" src={props.imgURL} alt={props.title} />
+      <ImgCardInfo
+        artist={props.artist}
+        title={props.title}
+        date={props.date}
+      />
     </Container>
   );
 }
