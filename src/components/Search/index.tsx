@@ -1,18 +1,14 @@
 import React from 'react';
-import {
-  SearchSection,
-  Heading,
-  Feature,
-  Container,
-  Input,
-  Button,
-} from './styled';
+import { SearchSection, Container, Input, Button } from './styled';
+import StyledHeading from '../StyledHeading';
 export default function Search() {
   return (
     <SearchSection>
-      <Heading>
-        Let’s Find Some <Feature>Art</Feature> Here!
-      </Heading>
+      <StyledHeading
+        text_start="Let's Find Some "
+        feature="Art"
+        text_end=" Here!"
+      />
       <Container>
         <Input type="text" placeholder="Search Art, Artist, Work..." />
         <Button>🔍</Button>

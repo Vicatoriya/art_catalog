@@ -1,8 +1,8 @@
 import React from 'react';
 import { H3 } from './styled';
-type Props = {
+interface StandardHeadingProps {
   text: string;
-};
-export default function Heading(props: Props) {
+}
+export default function StandardHeading(props: StandardHeadingProps) {
   return <H3>{props.text}</H3>;
 }

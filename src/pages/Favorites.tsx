@@ -1,33 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import Search from '../components/Search';
-import SpecialGallery from '../components/SpecialGallery';
+import React, { useState, useEffect } from 'react';
 import ImgList from '../components/ImgList';
 import Heading from '../components/StandardHeading';
+import StyledHeading from '../components/StyledHeading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { ImageInfo } from './Home';
 import Loader from '../components/Loader';
 
-export interface ImageInfo {
-  id: string;
-  title: string;
-  artist: string;
-  date: string;
-  imgURL: string;
-}
-
-export default function Home() {
+export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInfo>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getImages();
     return;
-  }, []);
+  }, Object.keys(sessionStorage));
+
+  let isEmptyTitle =
+    sessionStorage.length === 0 ? (
+      <StyledHeading
+        text_start="It's "
+        feature="empty"
+        text_end=" now("
+      ></StyledHeading>
+    ) : null;
 
   function getImages() {
+    if (sessionStorage.length === 0) {
+      return;
+    }
+    setLoading(true);
+    let ids = Object.keys(sessionStorage).join(',');
     setLoading(true);
     fetch(
-      'https://api.artic.edu/api/v1/artworks?fields=id,image_id,title,artist_title,date_display&limit=20'
+      'https://api.artic.edu/api/v1/artworks?ids=' +
+        ids +
+        '&fields=id,image_id,title,artist_title,date_display'
     )
       .then(function (response) {
         if (response.ok) return response.json();
@@ -66,10 +74,14 @@ export default function Home() {
         <Loader />
       ) : (
         <main>
-          <Search />
-          <SpecialGallery />
-          <Heading text="Other works for you" />
-          <ImgList imgs={images.slice(0, 6)} />
+          <StyledHeading
+            text_start="Here Are Your "
+            feature="Favorites"
+            text_end=""
+          />
+          <Heading text="Your favorites list"></Heading>
+          <ImgList imgs={images} />
+          {isEmptyTitle}
         </main>
       )}
       <Footer />

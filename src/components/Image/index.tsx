@@ -1,0 +1,60 @@
+import React from 'react';
+import { Container, ImageSection, InfoSection, Overview } from './styled';
+import FavIcon from '../FavIcon';
+export interface ImageProps {
+  id: string;
+  imageURL: string;
+  title: string;
+  artist: string;
+  date: string;
+  dimensions: string;
+  place: string;
+  credit_line: string;
+  medium: string;
+}
+export default function Image(props: ImageProps) {
+  const addToFavClickHandler = () => {
+    if (sessionStorage.getItem(props.id) != null) {
+      sessionStorage.removeItem(props.id);
+    } else {
+      sessionStorage.setItem(props.id, '');
+    }
+  };
+
+  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  return (
+    <Container>
+      <ImageSection>
+        <img src={props.imageURL} alt={props.title} id="main" />
+        <FavIcon
+          clickHandler={addToFavClickHandler}
+          isFavorited={isFavorited}
+        />
+      </ImageSection>
+      <InfoSection>
+        <div>
+          <h2>{props.title}</h2>
+          <h3>{props.artist}</h3>
+          <p id="date">{props.date}</p>
+        </div>
+        <div>
+          <h2>Overview</h2>
+          <Overview>
+            <li>
+              <strong>Artist nationality:</strong> {props.place}
+            </li>
+            <li>
+              <strong>Dimensions:</strong> {props.dimensions}
+            </li>
+            <li>
+              <strong>Medium:</strong> {props.medium}
+            </li>
+            <li>
+              <strong>Credit Line:</strong> {props.credit_line}
+            </li>
+          </Overview>
+        </div>
+      </InfoSection>
+    </Container>
+  );
+}

@@ -5,15 +5,6 @@ export const SearchSection = styled.section`
   margin-bottom: 50px;
 `;
 
-export const Heading = styled.h1`
-  font-size: 36px;
-  margin-bottom: 20px;
-`;
-
-export const Feature = styled.span`
-  color: orange;
-`;
-
 export const Container = styled.div`
   display: inline-block;
   position: relative;
@@ -28,7 +19,7 @@ export const Button = styled.button`
   position: absolute;
   right: 0;
   padding: 10px;
-  background-color: orange;
+  background-color: rgba(224, 164, 73, 1);
   border: none;
   cursor: pointer;
   font-size: 18px;
