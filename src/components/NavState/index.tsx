@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, FC } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
 
 interface MenuContextProps {
   isMenuOpen: boolean;
@@ -14,7 +14,7 @@ interface NavStateProps {
   children: ReactNode;
 }
 
-const NavState: FC<NavStateProps> = ({ children }) => {
+export default function NavState(props: NavStateProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenuMode() {
@@ -23,9 +23,7 @@ const NavState: FC<NavStateProps> = ({ children }) => {
 
   return (
     <MenuContext.Provider value={{ isMenuOpen, toggleMenuMode }}>
-      {children}
+      {props.children}
     </MenuContext.Provider>
   );
-};
-
-export default NavState;
+}

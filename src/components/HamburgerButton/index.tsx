@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MenuButton, Bar } from './styled';
-import { MenuContext } from '../../constants/navState';
+import { MenuContext } from '../NavState';
 
 export default function HamburgerButton() {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);

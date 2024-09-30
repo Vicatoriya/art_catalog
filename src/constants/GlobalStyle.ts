@@ -1,7 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-// Создаем глобальный стиль
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
