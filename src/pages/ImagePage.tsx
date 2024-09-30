@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import { ImageProps } from '../components/Image';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Loader from '../components/Loader';
+
 export default function ImagePage() {
   const [imgInfo, setImgInfo] = useState<ImageProps>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getImgInfo();
@@ -52,11 +54,10 @@ export default function ImagePage() {
     };
     return img;
   }
-  // let temp = loading ? <h1>Loading</h1> : <ImgList imgs={images.slice(0, 6)} />;
   return (
     <>
       <Header />
-      <Image {...(imgInfo as ImageProps)} />
+      {loading ? <Loader /> : <Image {...(imgInfo as ImageProps)} />}
       <Footer />
     </>
   );
