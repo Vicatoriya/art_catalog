@@ -9,7 +9,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  main{
-    margin-top:150px;
+  #root{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  justify-content:space-between;
   }
 `;

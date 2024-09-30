@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from './styled';
 import fav from '../../assets/fav_bright.png';
-export default function FavIcon() {
+
+interface FavIconProps {
+  clickHandler: () => void;
+  isFavorited: boolean;
+}
+export default function FavIcon(props: FavIconProps) {
+  const [isFav, setIsFav] = useState(false);
+
+  useEffect(() => {
+    setIsFav(props.isFavorited);
+  }, [props.isFavorited]);
+
+  const toggleFavorite = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsFav(!isFav);
+    props.clickHandler();
+  };
+
   return (
-    <Icon>
-      <img src={fav} alt="Add to favorites" />
+    <Icon onClick={toggleFavorite} isActive={isFav}>
+      <img
+        src={fav}
+        alt={isFav ? 'Remove from favorites' : 'Add to favorites'}
+      />
     </Icon>
   );
 }

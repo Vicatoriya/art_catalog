@@ -5,7 +5,8 @@ export const Container = styled.section`
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 90px 0;
+  flex-grow: 1;
 `;
 
 export const ImageSection = styled.div`
