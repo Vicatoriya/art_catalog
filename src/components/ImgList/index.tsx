@@ -10,9 +10,9 @@ export default function ImgList(props: ImgListProps) {
   const cards = props.imgs.map((value, index) => (
     <ImgCard
       imgURL={value.imgURL}
-      title={value.title ?? 'Undefined'}
-      date={value.date ?? 'Undefined'}
-      artist={value.artist ?? 'Undefined'}
+      title={value.title}
+      date={value.date}
+      artist={value.artist}
       key={value.id}
       id={value.id}
     />

@@ -5,6 +5,8 @@ import ImgList from '../components/ImgList';
 import Heading from '../components/StandardHeading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
+
 export interface ImageInfo {
   id: string;
   title: string;
@@ -15,7 +17,7 @@ export interface ImageInfo {
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInfo>>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getImages();
@@ -25,7 +27,7 @@ export default function Home() {
   function getImages() {
     setLoading(true);
     fetch(
-      'https://api.artic.edu/api/v1/artworks?fields=id,image_id,title,artist_title,date_display&limit=50'
+      'https://api.artic.edu/api/v1/artworks?fields=id,image_id,title,artist_title,date_display&limit=20'
     )
       .then(function (response) {
         if (response.ok) return response.json();
@@ -56,14 +58,20 @@ export default function Home() {
     }
     return arr;
   }
-  let temp = loading ? <h1>Loading</h1> : <ImgList imgs={images.slice(0, 6)} />;
+
   return (
     <>
       <Header />
-      <Search />
-      <SpecialGallery />
-      <Heading text="Other works for you" />
-      {temp}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Search />
+          <SpecialGallery />
+          <Heading text="Other works for you" />
+          <ImgList imgs={images.slice(0, 6)} />
+        </>
+      )}
       <Footer />
     </>
   );

@@ -1,21 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImgList from '../components/ImgList';
 import Heading from '../components/StandardHeading';
 import StyledHeading from '../components/StyledHeading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ImageInfo } from './Home';
-export default function Home() {
-  let temp = useRef<Array<Response>>([]);
+import Loader from '../components/Loader';
+
+export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInfo>>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getImages();
     return;
   }, Object.keys(sessionStorage));
 
+  let isEmptyTitle =
+    sessionStorage.length === 0 ? (
+      <StyledHeading
+        text_start="It's "
+        feature="empty"
+        text_end=" now("
+      ></StyledHeading>
+    ) : null;
+
   function getImages() {
+    if (sessionStorage.length === 0) {
+      return;
+    }
     setLoading(true);
     let ids = Object.keys(sessionStorage).join(',');
     setLoading(true);
@@ -54,8 +67,6 @@ export default function Home() {
     return arr;
   }
 
-  let load = loading ? <h1>Loading</h1> : <ImgList imgs={images} />;
-
   return (
     <>
       <Header />
@@ -65,7 +76,8 @@ export default function Home() {
         text_end=""
       />
       <Heading text="Your favorites list"></Heading>
-      {load}
+      {isEmptyTitle}
+      {loading ? <Loader /> : <ImgList imgs={images} />}
       <Footer />
     </>
   );
