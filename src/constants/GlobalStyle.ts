@@ -15,4 +15,8 @@ export const GlobalStyle = createGlobalStyle`
   min-height:100vh;
   justify-content:space-between;
   }
+
+  main{
+  margin-top:100px;
+  }
 `;

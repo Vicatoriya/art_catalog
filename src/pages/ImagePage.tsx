@@ -57,7 +57,9 @@ export default function ImagePage() {
   return (
     <>
       <Header />
-      {loading ? <Loader /> : <Image {...(imgInfo as ImageProps)} />}
+      <main>
+        {loading ? <Loader /> : <Image {...(imgInfo as ImageProps)} />}
+      </main>
       <Footer />
     </>
   );

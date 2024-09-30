@@ -65,12 +65,12 @@ export default function Home() {
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <main>
           <Search />
           <SpecialGallery />
           <Heading text="Other works for you" />
           <ImgList imgs={images.slice(0, 6)} />
-        </>
+        </main>
       )}
       <Footer />
     </>

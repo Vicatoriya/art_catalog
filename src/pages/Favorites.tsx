@@ -70,14 +70,20 @@ export default function Favorites() {
   return (
     <>
       <Header />
-      <StyledHeading
-        text_start="Here Are Your "
-        feature="Favorites"
-        text_end=""
-      />
-      <Heading text="Your favorites list"></Heading>
-      {isEmptyTitle}
-      {loading ? <Loader /> : <ImgList imgs={images} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <main>
+          <StyledHeading
+            text_start="Here Are Your "
+            feature="Favorites"
+            text_end=""
+          />
+          <Heading text="Your favorites list"></Heading>
+          <ImgList imgs={images} />
+          {isEmptyTitle}
+        </main>
+      )}
       <Footer />
     </>
   );
