@@ -1,14 +1,9 @@
 import React from 'react';
-import { GalleryItemInfo, Span } from './styled';
+import { Container, Span, ClampedParagraph } from './styled';
 import FavIcon from '../FavIcon';
+import ImageInformation from '../../constants/ImageInformation';
 
-interface ImgCardInfoProps {
-  artist: string;
-  title: string;
-  date: string;
-  id: string;
-}
-export default function ImgCardInfo(props: ImgCardInfoProps) {
+export default function ImgCardInfo(props: ImageInformation) {
   const addToFavClickHandler = () => {
     if (sessionStorage.getItem(props.id) != null) {
       sessionStorage.removeItem(props.id);
@@ -20,13 +15,10 @@ export default function ImgCardInfo(props: ImgCardInfoProps) {
   let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <>
-      <GalleryItemInfo>
-        <p>
-          {props.title} <br />
-          <span>{props.artist}</span>
-        </p>
-        <Span>{props.date}</Span>
-      </GalleryItemInfo>
+      <Container>
+        <ClampedParagraph>{props.title}</ClampedParagraph>
+        <p id="artist">{props.artist}</p>
+      </Container>
       <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
     </>
   );

@@ -7,5 +7,6 @@ export const Gallery = styled.section`
 export const GalleryGrid = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
 `;

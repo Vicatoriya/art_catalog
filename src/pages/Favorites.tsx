@@ -4,11 +4,11 @@ import Heading from '../components/StandardHeading';
 import StyledHeading from '../components/StyledHeading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ImageInfo } from './Home';
+import ImageInformation from '../constants/ImageInformation';
 import Loader from '../components/Loader';
 
 export default function Favorites() {
-  const [images, setImages] = useState<Array<ImageInfo>>([]);
+  const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Favorites() {
     fetch(
       'https://api.artic.edu/api/v1/artworks?ids=' +
         ids +
-        '&fields=id,image_id,title,artist_title,date_display'
+        '&fields=id,image_id,title,artist_title'
     )
       .then(function (response) {
         if (response.ok) return response.json();
@@ -49,14 +49,13 @@ export default function Favorites() {
       .finally(() => setLoading(false));
   }
 
-  function parseImagesJSON(json: any): Array<ImageInfo> {
-    let arr: Array<ImageInfo> = [];
+  function parseImagesJSON(json: any): Array<ImageInformation> {
+    let arr: Array<ImageInformation> = [];
     for (let i = 0; i < json.data.length; i++) {
       arr[i] = {
         id: json.data[i].id,
         title: json.data[i].title,
         artist: json.data[i].artist_title,
-        date: json.data[i].date_display,
         imgURL:
           json.config.iiif_url +
           '/' +

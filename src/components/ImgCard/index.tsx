@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container } from './styled';
-import ImgCardInfo from '../../ImgCardInfo';
+import ImgCardInfo from '../ImgCardInfo';
 import { useNavigate } from 'react-router-dom';
-import { ImageInfo } from '../../../pages/Home';
+import ImageInformation from '../../constants/ImageInformation';
 
-export default function ImgCard(props: ImageInfo) {
+export default function ImgCard(props: ImageInformation) {
   const navigate = useNavigate();
 
   const toggleImgCard = () => {
@@ -14,12 +14,7 @@ export default function ImgCard(props: ImageInfo) {
   return (
     <Container onClick={toggleImgCard}>
       <img id="main_pic" src={props.imgURL} alt={props.title} />
-      <ImgCardInfo
-        artist={props.artist}
-        title={props.title}
-        date={props.date}
-        id={props.id}
-      />
+      <ImgCardInfo {...props} />
     </Container>
   );
 }
