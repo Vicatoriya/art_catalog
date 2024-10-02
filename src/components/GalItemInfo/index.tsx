@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, SingleLineEllipsis } from './styled';
 import ImageInformation from '../../constants/ImageInformation';
 
-export default function ImgCardInfo(props: ImageInformation) {
+export default function GalleryItemInfo(props: ImageInformation) {
   return (
     <>
       <Container>
