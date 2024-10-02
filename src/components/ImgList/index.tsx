@@ -8,13 +8,7 @@ interface ImgListProps {
 }
 export default function ImgList(props: ImgListProps) {
   const cards = props.imgs.map((value, index) => (
-    <ImgCard
-      imgURL={value.imgURL}
-      title={value.title}
-      artist={value.artist}
-      key={value.id}
-      id={value.id}
-    />
+    <ImgCard {...value} key={value.id} />
   ));
   return (
     <>

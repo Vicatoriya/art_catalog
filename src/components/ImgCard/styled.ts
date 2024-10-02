@@ -6,10 +6,9 @@ export const Container = styled.div`
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   padding: 15px;
   position: relative;
-
+  cursor: pointer;
   & #main_pic {
     width: 80px;
     height: 80px;

@@ -5,5 +5,5 @@ export const Container = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 20px 0 20px;
-  background-color: rgba(250, 250, 250, 1);
+  background: white;
 `;

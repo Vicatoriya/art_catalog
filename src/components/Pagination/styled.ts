@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   list-style: none;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 
 export const PageButton = styled.button<{ active?: boolean }>`

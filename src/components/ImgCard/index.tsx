@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './styled';
-import ImgCardInfo from '../ImgCardInfo';
+import ImgCardInfo from '../GalItemInfo';
 import { useNavigate } from 'react-router-dom';
 import ImageInformation from '../../constants/ImageInformation';
 

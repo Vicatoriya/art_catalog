@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Gallery, GalleryGrid } from './styled';
 import GalleryItem from '../GalleryItem';
 import Pagination from '../Pagination';
-import Heading from '../StandardHeading';
 import ImageInformation from '../../constants/ImageInformation';
 
 interface SpecialGalleryProps {
@@ -19,7 +18,6 @@ export default function SpecialGallery(props: SpecialGalleryProps) {
 
   return (
     <Gallery>
-      <Heading text="Our special gallery" />
       <GalleryGrid>
         <GalleryItem {...props.images[(currentPage - 1) * 3]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 1]} />

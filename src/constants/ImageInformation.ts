@@ -3,4 +3,5 @@ export default interface ImageInformation {
   title: string;
   artist: string;
   imgURL: string;
+  date: string;
 }

@@ -35,7 +35,7 @@ export default function Favorites() {
     fetch(
       'https://api.artic.edu/api/v1/artworks?ids=' +
         ids +
-        '&fields=id,image_id,title,artist_title'
+        '&fields=id,image_id,title,artist_title,date_display'
     )
       .then(function (response) {
         if (response.ok) return response.json();
@@ -55,6 +55,7 @@ export default function Favorites() {
       arr[i] = {
         id: json.data[i].id,
         title: json.data[i].title,
+        date: json.data[i].date_display,
         artist: json.data[i].artist_title,
         imgURL:
           json.config.iiif_url +
