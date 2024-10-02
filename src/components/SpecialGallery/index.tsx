@@ -11,14 +11,19 @@ interface SpecialGalleryProps {
 
 export default function SpecialGallery(props: SpecialGalleryProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setIsAnimating(false);
+    }, 500);
   };
 
   return (
     <Gallery>
-      <GalleryGrid>
+      <GalleryGrid className={isAnimating ? 'fade-out' : ''}>
         <GalleryItem {...props.images[(currentPage - 1) * 3]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 1]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 2]} />
