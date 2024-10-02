@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Image } from './styled';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 import GalleryItemInfo from '../GalItemInfo';
 import FavIcon from '../FavIcon';
 

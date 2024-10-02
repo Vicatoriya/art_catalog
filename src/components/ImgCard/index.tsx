@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from './styled';
 import ImgCardInfo from '../ImgCardInfo';
 import { useNavigate } from 'react-router-dom';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 import FavIcon from '../FavIcon';
 
 export default function ImgCard(props: ImageInformation) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styled';
 import ImgCard from '../ImgCard';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 
 interface ImgListProps {
   imgs: Array<ImageInformation>;

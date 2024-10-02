@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, SingleLineEllipsis } from './styled';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 
 export default function GalleryItemInfo(props: ImageInformation) {
   return (

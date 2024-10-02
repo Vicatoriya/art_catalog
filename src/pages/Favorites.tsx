@@ -4,7 +4,7 @@ import Heading from '../components/StandardHeading';
 import StyledHeading from '../components/StyledHeading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ImageInformation from '../constants/ImageInformation';
+import ImageInformation from '../types/ImageInformation';
 import Loader from '../components/Loader';
 
 export default function Favorites() {
@@ -69,22 +69,24 @@ export default function Favorites() {
 
   return (
     <>
-      <Header />
       {loading ? (
         <Loader />
       ) : (
-        <main>
-          <StyledHeading
-            text_start="Here Are Your "
-            feature="Favorites"
-            text_end=""
-          />
-          <Heading text="Your favorites list"></Heading>
-          <ImgList imgs={images} />
-          {isEmptyTitle}
-        </main>
+        <>
+          <Header />
+          <main>
+            <StyledHeading
+              text_start="Here Are Your "
+              feature="Favorites"
+              text_end=""
+            />
+            <Heading text="Your favorites list"></Heading>
+            <ImgList imgs={images} />
+            {isEmptyTitle}
+          </main>
+          <Footer />
+        </>
       )}
-      <Footer />
     </>
   );
 }

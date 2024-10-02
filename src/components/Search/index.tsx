@@ -1,18 +1,21 @@
 import React from 'react';
-import { SearchSection, Container, Input, Button } from './styled';
-import StyledHeading from '../StyledHeading';
-export default function Search() {
+import searchImg from '../../assets/search.png';
+import {
+  SearchContainer,
+  SearchIcon,
+  SearchInput,
+  SearchSection,
+} from './styled';
+
+export default function SearchBar() {
   return (
     <SearchSection>
-      <StyledHeading
-        text_start="Let's Find Some "
-        feature="Art"
-        text_end=" Here!"
-      />
-      <Container>
-        <Input type="text" placeholder="Search Art, Artist, Work..." />
-        <Button>🔍</Button>
-      </Container>
+      <SearchContainer>
+        <SearchInput placeholder="Search Art, Artist, Work..." />
+        <SearchIcon>
+          <img src={searchImg} alt="Search icon"></img>
+        </SearchIcon>
+      </SearchContainer>
     </SearchSection>
   );
 }

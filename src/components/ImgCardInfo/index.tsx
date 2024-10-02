@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './styled';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 
 export default function ImgCardInfo(props: ImageInformation) {
   return (

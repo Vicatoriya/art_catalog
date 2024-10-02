@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Gallery, GalleryGrid } from './styled';
 import GalleryItem from '../GalleryItem';
 import Pagination from '../Pagination';
-import ImageInformation from '../../constants/ImageInformation';
+import ImageInformation from '../../types/ImageInformation';
 
 interface SpecialGalleryProps {
   totalPages: number;
