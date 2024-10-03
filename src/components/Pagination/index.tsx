@@ -25,7 +25,7 @@ export default function Pagination({
         pages.push(
           <PageButton
             key={i}
-            active={i === currentPage}
+            $active={i === currentPage}
             onClick={() => handlePageClick(i)}
           >
             {i}
@@ -51,7 +51,7 @@ export default function Pagination({
         pages.push(
           <PageButton
             key={i}
-            active={i === currentPage}
+            $active={i === currentPage}
             onClick={() => handlePageClick(i)}
           >
             {i}

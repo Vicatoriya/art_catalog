@@ -8,11 +8,11 @@ export const SearchForm = styled.form`
   gap: 5px;
 `;
 
-export const SearchContainer = styled.div<{ error: boolean }>`
+export const SearchContainer = styled.div<{ $error: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: ${({ error }) => (error ? '2px solid red' : 'none')};
+  border: ${(props) => (props.$error ? '2px solid red' : 'none')};
   background-color: #f5f5f5;
   border-radius: 25px;
   padding: 10px 20px;
@@ -51,6 +51,5 @@ export const SearchIcon = styled.button`
 export const ErrorMessage = styled.span`
   color: red;
   font-size: 15px;
-
   text-align: center;
 `;

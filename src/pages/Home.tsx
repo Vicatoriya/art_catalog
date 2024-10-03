@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Search from '../components/Search';
+import SearchBar from '../components/SearchBar';
 import Gallery from '../components/Gallery';
 import ImgList from '../components/ImgList';
 import Heading from '../components/StandardHeading';
@@ -67,7 +67,7 @@ export default function Home() {
               feature="Art"
               text_end=" Here!"
             />
-            <Search />
+            <SearchBar />
             <Heading text="Our special gallery" />
             <Gallery
               images={images.slice(0, totalSpecialGalleryPages * 3)}
