@@ -4,6 +4,7 @@ import ImageInformation from '../../types/ImageInformation';
 import ImgList from '../ImgList';
 import StandardHeading from '../StandardHeading';
 import Loader from '../Loader';
+import SortSelector from '../SortSelector';
 import {
   SearchContainer,
   SearchIcon,
@@ -18,6 +19,7 @@ export default function SearchBar() {
   const [query, setQuery] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [isResultsVisible, setisResultsVisible] = useState<boolean>(false);
+  const [sortCriteria, setSortCriteria] = useState<string>('title');
 
   useEffect(() => {
     if (!error) {
@@ -106,6 +108,17 @@ export default function SearchBar() {
     validateSearch(q);
   };
 
+  const handleSortChange = (criteria: string) => {
+    setSortCriteria(criteria);
+  };
+
+  const sortedImages = [...images].sort((a, b) => {
+    const fieldA = a[sortCriteria as keyof typeof a] || '';
+    const fieldB = b[sortCriteria as keyof typeof b] || '';
+
+    return fieldA ? (fieldB ? fieldA.localeCompare(fieldB) : -1) : 1;
+  });
+
   return (
     <SearchForm>
       <SearchContainer $error={error != ''}>
@@ -124,7 +137,11 @@ export default function SearchBar() {
       {images.length > 0 && isResultsVisible && query != '' && (
         <>
           <StandardHeading text="Search results" />
-          <ImgList imgs={images} />
+          <SortSelector
+            selectedSort={sortCriteria}
+            onSortChange={handleSortChange}
+          />
+          <ImgList imgs={sortedImages} />
         </>
       )}
       {images.length === 0 && isResultsVisible && <p>No results found</p>}
