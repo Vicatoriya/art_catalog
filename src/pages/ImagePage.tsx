@@ -52,8 +52,12 @@ export default function ImagePage() {
         json.data.image_id +
         '/full/843,/0/default.jpg',
     };
+    if (json.data.image_id == null) {
+      img.imageURL = '';
+    }
     return img;
   }
+
   return (
     <>
       {loading ? (

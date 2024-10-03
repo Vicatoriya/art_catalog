@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '../FavIcon';
+import imageHolder from '../../assets/img_holder.webp';
+
 export interface ImageProps {
   id: string;
   imageURL: string;
@@ -13,6 +15,8 @@ export interface ImageProps {
   medium: string;
 }
 export default function Image(props: ImageProps) {
+  const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
+
   const addToFavClickHandler = () => {
     if (sessionStorage.getItem(props.id) != null) {
       sessionStorage.removeItem(props.id);
@@ -21,11 +25,15 @@ export default function Image(props: ImageProps) {
     }
   };
 
+  const handleError = () => {
+    setImgSrc(imageHolder);
+  };
+
   let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <Container>
       <ImageSection>
-        <img src={props.imageURL} alt={props.title} id="main" />
+        <img src={imgSrc} alt={props.title} id="main" onError={handleError} />
         <FavIcon
           clickHandler={addToFavClickHandler}
           isFavorited={isFavorited}

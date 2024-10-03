@@ -50,6 +50,9 @@ export default function Home() {
           json.data[i].image_id +
           '/full/843,/0/default.jpg',
       };
+      if (json.data[i].image_id == null) {
+        arr[i].imgURL = '';
+      }
     }
     return arr;
   }

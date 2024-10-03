@@ -17,7 +17,9 @@ export default function Favorites() {
   }, Object.keys(sessionStorage));
 
   let isEmptyTitle =
-    sessionStorage.length === 0 ? (
+    Object.values(sessionStorage).filter((value) => {
+      return value == '';
+    }).length == 0 ? (
       <StyledHeading
         text_start="It's "
         feature="empty"
@@ -26,11 +28,14 @@ export default function Favorites() {
     ) : null;
 
   function getImages() {
-    if (sessionStorage.length === 0) {
+    let ids = Object.keys(sessionStorage)
+      .filter((value) => {
+        return sessionStorage.getItem(value) == '';
+      })
+      .join(',');
+    if (ids.length == 0) {
       return;
     }
-    setLoading(true);
-    let ids = Object.keys(sessionStorage).join(',');
     setLoading(true);
     fetch(
       'https://api.artic.edu/api/v1/artworks?ids=' +
@@ -63,6 +68,9 @@ export default function Favorites() {
           json.data[i].image_id +
           '/full/843,/0/default.jpg',
       };
+      if (json.data[i].image_id == null) {
+        arr[i].imgURL = '';
+      }
     }
     return arr;
   }

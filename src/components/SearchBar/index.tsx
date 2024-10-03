@@ -16,10 +16,14 @@ import {
 export default function SearchBar() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(() => {
+    return sessionStorage.getItem('lastQuery') ?? '';
+  });
   const [error, setError] = useState<string>('');
   const [isResultsVisible, setisResultsVisible] = useState<boolean>(false);
-  const [sortCriteria, setSortCriteria] = useState<string>('title');
+  const [sortCriteria, setSortCriteria] = useState<string>(() => {
+    return sessionStorage.getItem('lastSortCriteria') ?? '';
+  });
 
   useEffect(() => {
     if (!error) {
@@ -41,6 +45,8 @@ export default function SearchBar() {
   const validateSearch = (input: string) => {
     if (input.length == 0) {
       setImages([]);
+      sessionStorage.removeItem('lastSortCriteria');
+      sessionStorage.removeItem('lastQuery');
       setisResultsVisible(false);
       setError('');
       return;
@@ -65,6 +71,7 @@ export default function SearchBar() {
     if (q.length == 0) {
       return;
     }
+    sessionStorage.setItem('lastQuery', q);
     setisResultsVisible(true);
     setLoading(true);
     fetch(
@@ -98,6 +105,9 @@ export default function SearchBar() {
           json.data[i].image_id +
           '/full/843,/0/default.jpg',
       };
+      if (json.data[i].image_id == null) {
+        arr[i].imgURL = '';
+      }
     }
     return arr;
   }
@@ -110,6 +120,7 @@ export default function SearchBar() {
 
   const handleSortChange = (criteria: string) => {
     setSortCriteria(criteria);
+    sessionStorage.setItem('lastSortCriteria', criteria);
   };
 
   const sortedImages = [...images].sort((a, b) => {
