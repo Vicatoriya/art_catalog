@@ -20,7 +20,7 @@ export default function FavIcon(props: FavIconProps) {
   };
 
   return (
-    <Icon onClick={toggleFavorite} isActive={isFav}>
+    <Icon onClick={toggleFavorite} $isActive={isFav}>
       <img
         src={fav}
         alt={isFav ? 'Remove from favorites' : 'Add to favorites'}

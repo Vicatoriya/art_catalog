@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 15px 30px 15px 15px;
+  padding: 15px;
   text-align: left;
+  height: 20%;
   #title {
     margin: 0;
     color: #333;
@@ -17,4 +18,10 @@ export const Container = styled.div`
     font-size: 13px;
     margin-top: 5px;
   }
+`;
+
+export const SingleLineEllipsis = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

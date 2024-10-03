@@ -11,11 +11,12 @@ export const GlobalStyle = createGlobalStyle`
   #root{
   display:flex;
   flex-direction:column;
-  min-height:100vh;
   justify-content:space-between;
+  min-height:100vh;
+    background-color: rgba(250, 250, 250, 1);
   }
 
   main{
-  margin-top:100px;
+  padding-top:100px;
   }
 `;

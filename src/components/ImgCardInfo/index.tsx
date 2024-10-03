@@ -1,33 +1,15 @@
 import React from 'react';
-import { GalleryItemInfo, Span } from './styled';
-import FavIcon from '../FavIcon';
+import { Container } from './styled';
+import ImageInformation from '../../types/ImageInformation';
 
-interface ImgCardInfoProps {
-  artist: string;
-  title: string;
-  date: string;
-  id: string;
-}
-export default function ImgCardInfo(props: ImgCardInfoProps) {
-  const addToFavClickHandler = () => {
-    if (sessionStorage.getItem(props.id) != null) {
-      sessionStorage.removeItem(props.id);
-    } else {
-      sessionStorage.setItem(props.id, '');
-    }
-  };
-
-  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+export default function ImgCardInfo(props: ImageInformation) {
   return (
     <>
-      <GalleryItemInfo>
-        <p>
-          {props.title} <br />
-          <span>{props.artist}</span>
-        </p>
-        <Span>{props.date}</Span>
-      </GalleryItemInfo>
-      <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
+      <Container>
+        <p id="title">{props.title}</p>
+        <p id="artist">{props.artist}</p>
+        <p id="date">{props.date}</p>
+      </Container>
     </>
   );
 }

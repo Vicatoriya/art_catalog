@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Image from '../components/Image';
+import ImgSection from '../components/ImgSection';
 import { useParams } from 'react-router-dom';
-import { ImageProps } from '../components/Image';
+import { ImageProps } from '../components/ImgSection';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Loader from '../components/Loader';
@@ -52,15 +52,25 @@ export default function ImagePage() {
         json.data.image_id +
         '/full/843,/0/default.jpg',
     };
+    if (json.data.image_id == null) {
+      img.imageURL = '';
+    }
     return img;
   }
+
   return (
     <>
-      <Header />
-      <main>
-        {loading ? <Loader /> : <Image {...(imgInfo as ImageProps)} />}
-      </main>
-      <Footer />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <main>
+            <ImgSection {...(imgInfo as ImageProps)} />
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
