@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Gallery = styled.section`
   margin-bottom: 50px;
+  @media (max-width: 420px) {
+    margin-bottom: 35px;
+    margin-top: 20px;
+  }
 `;
 
 export const GalleryGrid = styled.div`
@@ -14,5 +18,9 @@ export const GalleryGrid = styled.div`
 
   &.fade-out {
     opacity: 0;
+  }
+
+  @media (max-width: 420px) {
+    gap: 10px;
   }
 `;

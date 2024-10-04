@@ -18,6 +18,16 @@ export const Container = styled.div`
     font-size: 13px;
     margin-top: 5px;
   }
+
+  @media (max-width: 420px) {
+    height: 25%;
+    padding: 10px;
+    font-size: 14px;
+    #date {
+      font-size: 12px;
+      margin-top: 3px;
+    }
+  }
 `;
 
 export const SingleLineEllipsis = styled.p`

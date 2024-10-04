@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -14,9 +13,19 @@ export const Container = styled.div`
     &:hover: transform: scale(1.05);
     overflow:hidden;
     cursor: pointer;
+
+
+    @media (max-width: 420px) {
+      width:28%;
+      height:270px;
+    }
 `;
 export const Image = styled.img`
   width: 100%;
   height: 80%;
   object-fit: cover;
+
+  @media (max-width: 420px) {
+    height: 75%;
+  }
 `;
