@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Image } from './styled';
 import ImageInformation from '../../types/ImageInformation';
@@ -9,6 +9,10 @@ import imageHolder from '@assets/img_holder.webp';
 export default function GalleryItem(props: ImageInformation) {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string>(props.imgURL);
+
+  useEffect(() => {
+    setImgSrc(props.imgURL);
+  }, [props.imgURL]);
 
   const toggleImgCard = () => {
     navigate('/image/' + props.id);
