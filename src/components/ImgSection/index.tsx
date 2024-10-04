@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container, ImageSection, InfoSection, Overview } from './styled';
-import FavIcon from '../FavIcon';
-import imageHolder from '../../assets/img_holder.webp';
+import FavIcon from '@components/FavIcon';
+import imageHolder from '@assets/img_holder.webp';
 
 export interface ImageProps {
   id: string;
@@ -29,7 +29,7 @@ export default function Image(props: ImageProps) {
     setImgSrc(imageHolder);
   };
 
-  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <Container>
       <ImageSection>

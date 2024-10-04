@@ -7,6 +7,11 @@ export const Container = styled.section`
   margin: 0 auto;
   padding: 90px 0;
   flex-grow: 1;
+
+  @media (max-width: 420px) {
+    padding: 20px 15%;
+    flex-direction: column;
+  }
 `;
 
 export const ImageSection = styled.div`
@@ -30,18 +35,31 @@ export const InfoSection = styled.div`
   & h2 {
     font-size: 24px;
     margin-bottom: 10px;
+
+    @media (max-width: 420px) {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
   }
 
   & h3 {
     font-size: 20px;
     color: rgba(224, 164, 73, 1);
     margin-bottom: 5px;
+
+    @media (max-width: 420px) {
+      font-size: 18px;
+    }
   }
 
   & #date {
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 40px;
+    @media (max-width: 420px) {
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
   }
 `;
 
@@ -56,5 +74,8 @@ export const Overview = styled.div`
 
   & li {
     margin-bottom: 5px;
+    @media (max-width: 420px) {
+      margin-bottom: 3px;
+    }
   }
 `;

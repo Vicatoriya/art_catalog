@@ -1,6 +1,5 @@
-import React from 'react';
-import NavState from '../NavState';
-import MainMenu from '../MainMenu';
+import NavState from '@components/NavState';
+import MainMenu from '@components/MainMenu';
 export default function Header() {
   return (
     <NavState>

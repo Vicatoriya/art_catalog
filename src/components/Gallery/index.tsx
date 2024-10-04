@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Gallery, GalleryGrid } from './styled';
-import GalleryItem from '../GalleryItem';
-import Pagination from '../Pagination';
+import GalleryItem from '@components/GalleryItem';
+import Pagination from '@components/Pagination';
 import ImageInformation from '../../types/ImageInformation';
 
 interface SpecialGalleryProps {

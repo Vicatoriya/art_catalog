@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, SingleLineEllipsis } from './styled';
 import ImageInformation from '../../types/ImageInformation';
 

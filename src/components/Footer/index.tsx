@@ -1,7 +1,6 @@
-import React from 'react';
 import { Container } from './styled';
-import logo from '../../assets/logo_dark.png';
-import modsen from '../../assets/modsen.png';
+import logo from '@assets/logo_dark.png';
+import modsen from '@assets/modsen.png';
 
 export default function Footer() {
   return (

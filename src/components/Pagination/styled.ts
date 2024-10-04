@@ -6,6 +6,9 @@ export const Container = styled.div`
   list-style: none;
   justify-content: center;
   margin-top: 50px;
+  @media (max-width: 420px) {
+    margin-top: 25px;
+  }
 `;
 
 export const PageButton = styled.button<{ $active?: boolean }>`
@@ -17,6 +20,12 @@ export const PageButton = styled.button<{ $active?: boolean }>`
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+
+  @media (max-width: 420px) {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin: 0 3px;
+  }
 
   &:hover {
     background-color: ${(props) => (props.$active ? '#d35400' : '#f2f2f2')};

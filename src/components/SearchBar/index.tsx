@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import searchImg from '../../assets/search.png';
+import { useState, useEffect } from 'react';
+import searchImg from '@assets/search.png';
 import ImageInformation from '../../types/ImageInformation';
-import ImgList from '../ImgList';
-import StandardHeading from '../StandardHeading';
-import Loader from '../Loader';
-import SortSelector from '../SortSelector';
+import ImgList from '@components/ImgList';
+import StandardHeading from '@components/StandardHeading';
+import Loader from '@components/Loader';
+import SortSelector from '@components/SortSelector';
 import {
   SearchContainer,
   SearchIcon,
@@ -92,7 +92,7 @@ export default function SearchBar() {
   }
 
   function parseImagesJSON(json: any): Array<ImageInformation> {
-    let arr: Array<ImageInformation> = [];
+    const arr: Array<ImageInformation> = [];
     for (let i = 0; i < json.data.length; i++) {
       arr[i] = {
         id: json.data[i].id,

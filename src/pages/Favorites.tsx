@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import ImgList from '../components/ImgList';
-import Heading from '../components/StandardHeading';
-import StyledHeading from '../components/StyledHeading';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useState, useEffect } from 'react';
+import ImgList from '@components/ImgList';
+import Heading from '@components/StandardHeading';
+import StyledHeading from '@components/StyledHeading';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import ImageInformation from '../types/ImageInformation';
-import Loader from '../components/Loader';
+import Loader from '@components/Loader';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
@@ -16,7 +16,7 @@ export default function Favorites() {
     return;
   }, Object.keys(sessionStorage));
 
-  let isEmptyTitle =
+  const isEmptyTitle =
     Object.values(sessionStorage).filter((value) => {
       return value == '';
     }).length == 0 ? (
@@ -28,7 +28,7 @@ export default function Favorites() {
     ) : null;
 
   function getImages() {
-    let ids = Object.keys(sessionStorage)
+    const ids = Object.keys(sessionStorage)
       .filter((value) => {
         return sessionStorage.getItem(value) == '';
       })
@@ -55,7 +55,7 @@ export default function Favorites() {
   }
 
   function parseImagesJSON(json: any): Array<ImageInformation> {
-    let arr: Array<ImageInformation> = [];
+    const arr: Array<ImageInformation> = [];
     for (let i = 0; i < json.data.length; i++) {
       arr[i] = {
         id: json.data[i].id,

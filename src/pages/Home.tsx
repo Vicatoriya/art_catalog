@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import SearchBar from '../components/SearchBar';
-import Gallery from '../components/Gallery';
-import ImgList from '../components/ImgList';
-import Heading from '../components/StandardHeading';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Loader from '../components/Loader';
+import { useEffect, useState } from 'react';
+import SearchBar from '@components/SearchBar';
+import Gallery from '@components/Gallery';
+import ImgList from '@components/ImgList';
+import Heading from '@components/StandardHeading';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
+import Loader from '@components/Loader';
 import ImageInformation from '../types/ImageInformation';
-import StyledHeading from '../components/StyledHeading';
+import StyledHeading from '@components/StyledHeading';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
@@ -37,7 +37,7 @@ export default function Home() {
   }
 
   function parseImagesJSON(json: any): Array<ImageInformation> {
-    let arr: Array<ImageInformation> = [];
+    const arr: Array<ImageInformation> = [];
     for (let i = 0; i < json.data.length; i++) {
       arr[i] = {
         id: json.data[i].id,

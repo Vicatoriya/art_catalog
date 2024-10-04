@@ -1,4 +1,3 @@
-import React from 'react';
 import { SelectWrapper, SortLabel, SortSelect } from './styled';
 
 interface SortSelectorProps {

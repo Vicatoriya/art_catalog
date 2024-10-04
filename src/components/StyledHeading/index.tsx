@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heading, Feature } from './styled';
 interface StyledHeadingProps {
   text_start: string;

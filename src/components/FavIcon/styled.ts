@@ -29,4 +29,13 @@ export const Icon = styled.div<{ $isActive: boolean }>`
     height: 25px;
     transition: transform 0.3s ease;
   }
+
+  @media (max-width: 420px) {
+    top: 10px;
+    right: 10px;
+    & img {
+      width: 22px;
+      height: 22px;
+    }
+  }
 `;

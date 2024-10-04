@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Icon } from './styled';
-import fav from '../../assets/fav_bright.png';
+import fav from '@assets/fav_bright.png';
 
 interface FavIconProps {
   clickHandler: () => void;

@@ -20,14 +20,16 @@
   },
   "lint-staged": {
     "*.{js,css,ts,tsx,jsx}": [
-      "prettier --write",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
       "eslint --fix"
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewiredtest",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },

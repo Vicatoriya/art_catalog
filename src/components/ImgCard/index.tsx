@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container } from './styled';
-import ImgCardInfo from '../ImgCardInfo';
+import ImgCardInfo from '@components/ImgCardInfo';
 import { useNavigate } from 'react-router-dom';
 import ImageInformation from '../../types/ImageInformation';
-import FavIcon from '../FavIcon';
-import imageHolder from '../../assets/img_holder.webp';
+import FavIcon from '@components/FavIcon';
+import imageHolder from '@assets/img_holder.webp';
 
 export default function ImgCard(props: ImageInformation) {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function ImgCard(props: ImageInformation) {
     setImgSrc(imageHolder);
   };
 
-  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
   return (
     <Container onClick={toggleImgCard}>
       <img id="main_pic" src={imgSrc} alt={props.title} onError={handleError} />
