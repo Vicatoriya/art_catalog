@@ -1,5 +1,5 @@
 import { Container } from './styled';
-import ImgCard from '../ImgCard';
+import ImgCard from '@components/ImgCard';
 import ImageInformation from '../../types/ImageInformation';
 
 interface ImgListProps {

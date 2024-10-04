@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageButton, Container, ArrowButton } from './styled';
 
 interface PaginationProps {
@@ -19,7 +18,7 @@ export default function Pagination({
   };
 
   const renderPageNumbers = () => {
-    let pages = [];
+    const pages = [];
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(

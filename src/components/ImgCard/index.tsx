@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Container } from './styled';
-import ImgCardInfo from '../ImgCardInfo';
+import ImgCardInfo from '@components/ImgCardInfo';
 import { useNavigate } from 'react-router-dom';
 import ImageInformation from '../../types/ImageInformation';
-import FavIcon from '../FavIcon';
-import imageHolder from '../../assets/img_holder.webp';
+import FavIcon from '@components/FavIcon';
+import imageHolder from '@assets/img_holder.webp';
 
 export default function ImgCard(props: ImageInformation) {
   const navigate = useNavigate();

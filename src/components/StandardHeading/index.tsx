@@ -1,4 +1,3 @@
-import React from 'react';
 import { H3 } from './styled';
 interface StandardHeadingProps {
   text: string;

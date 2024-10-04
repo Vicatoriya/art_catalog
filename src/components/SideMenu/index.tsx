@@ -1,5 +1,5 @@
-import React, { ReactNode, useContext } from 'react';
-import { MenuContext } from '../NavState';
+import { useContext } from 'react';
+import { MenuContext } from '@components/NavState';
 import { Menu, MenuLink } from './styled';
 
 export default function SideMenu() {

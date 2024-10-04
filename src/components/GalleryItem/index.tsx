@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Image } from './styled';
 import ImageInformation from '../../types/ImageInformation';
-import GalleryItemInfo from '../GalItemInfo';
-import FavIcon from '../FavIcon';
-import imageHolder from '../../assets/img_holder.webp';
+import GalleryItemInfo from '@components/GalItemInfo';
+import FavIcon from '@components/FavIcon';
+import imageHolder from '@assets/img_holder.webp';
 
 export default function GalleryItem(props: ImageInformation) {
   const navigate = useNavigate();

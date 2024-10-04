@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, ImageSection, InfoSection, Overview } from './styled';
-import FavIcon from '../FavIcon';
-import imageHolder from '../../assets/img_holder.webp';
+import FavIcon from '@components/FavIcon';
+import imageHolder from '@assets/img_holder.webp';
 
 export interface ImageProps {
   id: string;
