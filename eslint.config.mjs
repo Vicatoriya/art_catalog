@@ -1,32 +1,17 @@
-export default {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
 
-  ],
-  overrides: [],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './tsconfig.json',
+export default [
+  {files: ["**/*.{ts,tsx}"]},
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    "rules": {
+   "@typescript-eslint/no-explicit-any": ["off"]
+    }
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
-  rules: {
-    'react/react-in-jsx-scope': 0,
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
-  },
-};
+  pluginReact.configs.flat["jsx-runtime"]
+];

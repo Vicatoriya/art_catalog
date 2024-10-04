@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Image } from './styled';
 import ImageInformation from '../../types/ImageInformation';
@@ -22,7 +22,7 @@ export default function GalleryItem(props: ImageInformation) {
     }
   };
 
-  let isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
 
   const handleError = () => {
     setImgSrc(imageHolder);

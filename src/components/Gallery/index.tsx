@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Gallery, GalleryGrid } from './styled';
 import GalleryItem from '../GalleryItem';
 import Pagination from '../Pagination';
