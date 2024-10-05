@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const InfoWrapper = styled.div`
   padding: 15px;
   text-align: left;
   height: 20%;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const PaginationWrapper = styled.div`
   display: flex;
   align-items: center;
   list-style: none;
   justify-content: center;
   margin-top: 50px;
+
   @media (max-width: 420px) {
     margin-top: 25px;
   }

@@ -5,6 +5,7 @@ import ImgList from '@components/ImgList';
 import StandardHeading from '@components/StandardHeading';
 import Loader from '@components/Loader';
 import SortSelector from '@components/SortSelector';
+import { parseImagesJSON } from '../../utils/parseJSON';
 import {
   SearchContainer,
   SearchIcon,
@@ -68,7 +69,7 @@ export default function SearchBar() {
   };
 
   function findImages(q: string) {
-    if (q.length == 0) {
+    if (q.length === 0) {
       return;
     }
     sessionStorage.setItem('lastQuery', q);
@@ -91,27 +92,6 @@ export default function SearchBar() {
       .finally(() => setLoading(false));
   }
 
-  function parseImagesJSON(json: any): Array<ImageInformation> {
-    const arr: Array<ImageInformation> = [];
-    for (let i = 0; i < json.data.length; i++) {
-      arr[i] = {
-        id: json.data[i].id,
-        title: json.data[i].title,
-        artist: json.data[i].artist_title,
-        date: json.data[i].date_display,
-        imgURL:
-          json.config.iiif_url +
-          '/' +
-          json.data[i].image_id +
-          '/full/843,/0/default.jpg',
-      };
-      if (json.data[i].image_id == null) {
-        arr[i].imgURL = '';
-      }
-    }
-    return arr;
-  }
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const q = e.target.value;
     setQuery(q);
@@ -132,7 +112,7 @@ export default function SearchBar() {
 
   return (
     <SearchForm>
-      <SearchContainer $error={error != ''}>
+      <SearchContainer $error={error !== ''}>
         <SearchInput
           type="text"
           value={query}
@@ -145,7 +125,7 @@ export default function SearchBar() {
       </SearchContainer>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {loading && <Loader />}
-      {images.length > 0 && isResultsVisible && query != '' && (
+      {images.length > 0 && isResultsVisible && query !== '' && (
         <>
           <StandardHeading text="Search results" />
           <SortSelector

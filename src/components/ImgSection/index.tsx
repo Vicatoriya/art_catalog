@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, ImageSection, InfoSection, Overview } from './styled';
+import { ImageWrapper, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
 
@@ -14,6 +14,7 @@ export interface ImageProps {
   credit_line: string;
   medium: string;
 }
+
 export default function Image(props: ImageProps) {
   const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
 
@@ -30,8 +31,9 @@ export default function Image(props: ImageProps) {
   };
 
   const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+
   return (
-    <Container>
+    <ImageWrapper>
       <ImageSection>
         <img src={imgSrc} alt={props.title} id="main" onError={handleError} />
         <FavIcon
@@ -63,6 +65,6 @@ export default function Image(props: ImageProps) {
           </Overview>
         </div>
       </InfoSection>
-    </Container>
+    </ImageWrapper>
   );
 }

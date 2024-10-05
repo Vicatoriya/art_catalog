@@ -22,7 +22,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "./jest.config.js"
   ],
   "extends": "./tsconfig.paths.json"
 }

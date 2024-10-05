@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Image } from './styled';
+import { ItemWrapper, Image } from './styled';
 import ImageInformation from '../../types/ImageInformation';
-import GalleryItemInfo from '@components/GalItemInfo';
+import GalleryItemInfo from '@components/GalIeryItemInfo';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
 
@@ -31,11 +31,12 @@ export default function GalleryItem(props: ImageInformation) {
   const handleError = () => {
     setImgSrc(imageHolder);
   };
+
   return (
-    <Container onClick={toggleImgCard}>
+    <ItemWrapper onClick={toggleImgCard}>
       <Image src={imgSrc} alt={props.title} onError={handleError} />
       <GalleryItemInfo {...props} />
       <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
-    </Container>
+    </ItemWrapper>
   );
 }

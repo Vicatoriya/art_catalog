@@ -18,7 +18,7 @@ export default function Favorites() {
 
   const isEmptyTitle =
     Object.values(sessionStorage).filter((value) => {
-      return value == '';
+      return value === '';
     }).length == 0 ? (
       <StyledHeading
         text_start="It's "
@@ -30,10 +30,10 @@ export default function Favorites() {
   function getImages() {
     const ids = Object.keys(sessionStorage)
       .filter((value) => {
-        return sessionStorage.getItem(value) == '';
+        return sessionStorage.getItem(value) === '';
       })
       .join(',');
-    if (ids.length == 0) {
+    if (ids.length === 0) {
       return;
     }
     setLoading(true);
@@ -68,7 +68,7 @@ export default function Favorites() {
           json.data[i].image_id +
           '/full/843,/0/default.jpg',
       };
-      if (json.data[i].image_id == null) {
+      if (json.data[i].image_id === null) {
         arr[i].imgURL = '';
       }
     }

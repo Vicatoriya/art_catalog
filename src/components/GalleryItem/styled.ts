@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ItemWrapper = styled.div`
     display:flex;
     position:relative;
     flex-direction:column;
@@ -13,7 +13,6 @@ export const Container = styled.div`
     &:hover: transform: scale(1.05);
     overflow:hidden;
     cursor: pointer;
-
 
     @media (max-width: 420px) {
       width:28%;

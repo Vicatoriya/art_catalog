@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Gallery = styled.section`
+export const GalleryWrapper = styled.section`
   margin-bottom: 50px;
   @media (max-width: 420px) {
     margin-bottom: 35px;
@@ -8,7 +8,7 @@ export const Gallery = styled.section`
   }
 `;
 
-export const GalleryGrid = styled.div`
+export const Gallery = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

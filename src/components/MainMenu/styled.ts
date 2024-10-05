@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Navbar = styled.div`
+export const Navbar = styled.nav`
   display: flex;
   position: fixed;
   right: 0;

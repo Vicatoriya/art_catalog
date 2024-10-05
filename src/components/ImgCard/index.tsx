@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container } from './styled';
+import { CardWrapper } from './styled';
 import ImgCardInfo from '@components/ImgCardInfo';
 import { useNavigate } from 'react-router-dom';
 import ImageInformation from '../../types/ImageInformation';
@@ -27,11 +27,12 @@ export default function ImgCard(props: ImageInformation) {
   };
 
   const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+
   return (
-    <Container onClick={toggleImgCard}>
+    <CardWrapper onClick={toggleImgCard}>
       <img id="main_pic" src={imgSrc} alt={props.title} onError={handleError} />
       <ImgCardInfo {...props} />
       <FavIcon isFavorited={isFavorited} clickHandler={addToFavClickHandler} />
-    </Container>
+    </CardWrapper>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
+export const ImageWrapper = styled.section`
   display: flex;
   gap: 60px;
   max-width: 1200px;
@@ -17,6 +17,7 @@ export const Container = styled.section`
 export const ImageSection = styled.div`
   position: relative;
   flex: 1;
+
   & #main {
     width: 100%;
     height: auto;
