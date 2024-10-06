@@ -55,13 +55,13 @@ export default function SearchBar() {
     if (input.length < 3) {
       setImages([]);
       setisResultsVisible(false);
-      setError('Введите минимум 3 символа');
+      setError('Enter at least 3 characters');
       return;
     }
     if (/[^a-zA-Z0-9\s]/.test(input)) {
       setImages([]);
       setisResultsVisible(false);
-      setError('Недопустимые символы в поисковом запросе');
+      setError('Invalid characters in search query');
       return;
     }
     setError('');
@@ -83,7 +83,7 @@ export default function SearchBar() {
       .then(function (response) {
         if (response.ok) return response.json();
         else {
-          alert('Ошибка HTTP: ' + response.status);
+          alert('HTTP error: ' + response.status);
         }
       })
       .then(function (imagesInfo) {
