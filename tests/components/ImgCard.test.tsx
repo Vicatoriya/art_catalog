@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { ImgCard } from '../../src/components/ImgCard';
+import ImgCard from '../../src/components/ImgCard';
 import imageHolder from '@assets/img_holder.webp';
 import ImageInformation from '../../src/types/ImageInformation';
 import '@testing-library/jest-dom';
@@ -28,10 +28,11 @@ describe('ImgCard Component', () => {
     );
     expect(screen.getByAltText('Test Image')).toBeInTheDocument();
     expect(screen.getByText('Test Artist')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByText('Test Date')).toBeInTheDocument();
+    expect(screen.getByText('Test Image')).toBeInTheDocument();
   });
 
-  it('calls navigate on image click', () => {
+  it('calls navigate on click', () => {
     const mockNavigate = jest.fn();
     const { useNavigate } = require('react-router-dom');
     useNavigate.mockReturnValue(mockNavigate);
@@ -62,7 +63,7 @@ describe('ImgCard Component', () => {
         <ImgCard {...defaultProps} />
       </MemoryRouter>
     );
-    const favButton = screen.getByRole('button');
+    const favButton = screen.getByAltText('Add to favorites');
     expect(sessionStorage.getItem('123')).toBeNull();
     fireEvent.click(favButton);
     expect(sessionStorage.getItem('123')).toBe('');

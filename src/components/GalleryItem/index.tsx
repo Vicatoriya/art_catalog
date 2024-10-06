@@ -5,13 +5,16 @@ import ImageInformation from '../../types/ImageInformation';
 import GalleryItemInfo from '@components/GalIeryItemInfo';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
+import Loader from '@components/Loader';
 
 export default function GalleryItem(props: ImageInformation) {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string>(props.imgURL);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setImgSrc(props.imgURL);
+    setIsLoading(true);
   }, [props.imgURL]);
 
   const toggleImgCard = () => {
@@ -30,15 +33,22 @@ export default function GalleryItem(props: ImageInformation) {
 
   const handleError = () => {
     setImgSrc(imageHolder);
+    setIsLoading(false);
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   return (
     <ItemWrapper onClick={toggleImgCard}>
+      {isLoading && <Loader />}
       <Image
         src={imgSrc}
         alt={props.title}
         onError={handleError}
         role="mainImg"
+        onLoad={handleImageLoad}
       />
       <GalleryItemInfo {...props} />
       <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />

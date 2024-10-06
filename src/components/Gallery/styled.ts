@@ -8,7 +8,7 @@ export const GalleryWrapper = styled.section`
   }
 `;
 
-export const Gallery = styled.div`
+export const GalleryGrid = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

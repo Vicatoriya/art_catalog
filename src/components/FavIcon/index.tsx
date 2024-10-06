@@ -7,11 +7,11 @@ interface FavIconProps {
   isFavorited: boolean;
 }
 export default function FavIcon(props: FavIconProps) {
-  const [isFav, setIsFav] = useState(props.isFavorited);
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     setIsFav(props.isFavorited);
-  });
+  }, [props.isFavorited]);
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
