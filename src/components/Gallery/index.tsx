@@ -15,8 +15,8 @@ export default function Gallery(props: GalleryProps) {
 
   const handlePageChange = (page: number) => {
     setIsAnimating(true);
-    setCurrentPage(page);
     setTimeout(() => {
+      setCurrentPage(page);
       setIsAnimating(false);
     }, 500);
   };

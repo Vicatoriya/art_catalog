@@ -13,8 +13,10 @@ export default function GalleryItem(props: ImageInformation) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setImgSrc(props.imgURL);
-    setIsLoading(true);
+    if (props.imgURL) {
+      setIsLoading(true);
+      setImgSrc(props.imgURL);
+    }
   }, [props.imgURL]);
 
   const toggleImgCard = () => {
@@ -41,7 +43,7 @@ export default function GalleryItem(props: ImageInformation) {
   };
 
   return (
-    <ItemWrapper onClick={toggleImgCard}>
+    <ItemWrapper onClick={toggleImgCard} role="galItem">
       {isLoading && <Loader />}
       <Image
         src={imgSrc}
@@ -49,6 +51,7 @@ export default function GalleryItem(props: ImageInformation) {
         onError={handleError}
         role="mainImg"
         onLoad={handleImageLoad}
+        style={{ display: isLoading ? 'none' : 'block' }}
       />
       <GalleryItemInfo {...props} />
       <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />

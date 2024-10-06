@@ -56,13 +56,13 @@ const defaultProps = {
 };
 
 describe('Gallery component', () => {
-  test('renders the correct number of images', () => {
+  test('renders the correct number of gallery items', () => {
     render(
       <MemoryRouter>
         <Gallery {...defaultProps} />
       </MemoryRouter>
     );
-    const galleryItems = screen.getAllByRole('mainImg');
+    const galleryItems = screen.getAllByRole('galItem');
     expect(galleryItems.length).toBe(3);
   });
 
