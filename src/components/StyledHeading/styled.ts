@@ -4,6 +4,7 @@ export const Heading = styled.h1`
   font-size: 45px;
   margin: 70px 0;
   text-align: center;
+  font-family: 'Lexend Deca';
 
   @media (max-width: 420px) {
     margin: 35px 5%;
