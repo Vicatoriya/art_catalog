@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Gallery, GalleryWrapper } from './styled';
+import { GalleryWrapper, Gallery } from './styled';
 import GalleryItem from '@components/GalleryItem';
 import Pagination from '@components/Pagination';
 import ImageInformation from '../../types/ImageInformation';
@@ -23,7 +23,7 @@ export default function SpecialGallery(props: SpecialGalleryProps) {
 
   return (
     <GalleryWrapper>
-      <Gallery className={isAnimating ? 'fade-out' : ''}>
+      <Gallery className={isAnimating ? 'fade-out' : ''} role="gallery">
         <GalleryItem {...props.images[(currentPage - 1) * 3]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 1]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 2]} />

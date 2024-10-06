@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Icon = styled.div<{ $isActive: boolean }>`
+export const Icon = styled.button<{ $isActive: boolean }>`
   position: absolute;
   top: 15px;
   right: 15px;

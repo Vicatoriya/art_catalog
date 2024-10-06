@@ -30,29 +30,29 @@ export default function ImagePage() {
           alert('Ошибка HTTP: ' + response.status);
         }
       })
-      .then(function (json) {
-        setImgInfo(parseJSON(json));
+      .then(function (imageInfo) {
+        setImgInfo(parseImage(imageInfo));
       })
       .finally(() => setLoading(false));
   }
 
-  function parseJSON(json: any): ImageProps {
+  function parseImage(imageInfo: any): ImageProps {
     const img: ImageProps = {
       id: id as string,
-      dimensions: json.data.dimensions,
-      place: json.data.place_of_origin,
-      title: json.data.title,
-      artist: json.data.artist_title,
-      date: json.data.date_display,
-      credit_line: json.data.credit_line,
-      medium: json.data.medium_display,
+      dimensions: imageInfo.data.dimensions,
+      place: imageInfo.data.place_of_origin,
+      title: imageInfo.data.title,
+      artist: imageInfo.data.artist_title,
+      date: imageInfo.data.date_display,
+      credit_line: imageInfo.data.credit_line,
+      medium: imageInfo.data.medium_display,
       imageURL:
-        json.config.iiif_url +
+        imageInfo.config.iiif_url +
         '/' +
-        json.data.image_id +
+        imageInfo.data.image_id +
         '/full/843,/0/default.jpg',
     };
-    if (json.data.image_id == null) {
+    if (imageInfo.data.image_id == null) {
       img.imageURL = '';
     }
     return img;

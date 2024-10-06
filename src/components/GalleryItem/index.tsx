@@ -34,7 +34,12 @@ export default function GalleryItem(props: ImageInformation) {
 
   return (
     <ItemWrapper onClick={toggleImgCard}>
-      <Image src={imgSrc} alt={props.title} onError={handleError} />
+      <Image
+        src={imgSrc}
+        alt={props.title}
+        onError={handleError}
+        role="mainImg"
+      />
       <GalleryItemInfo {...props} />
       <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
     </ItemWrapper>

@@ -6,7 +6,7 @@ import ImageInformation from '../../types/ImageInformation';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
 
-export default function ImgCard(props: ImageInformation) {
+export function ImgCard(props: ImageInformation) {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string>(props.imgURL);
 

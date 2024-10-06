@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from './styled';
 import fav from '@assets/fav_bright.png';
 
@@ -8,6 +8,10 @@ interface FavIconProps {
 }
 export default function FavIcon(props: FavIconProps) {
   const [isFav, setIsFav] = useState(props.isFavorited);
+
+  useEffect(() => {
+    setIsFav(props.isFavorited);
+  });
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();

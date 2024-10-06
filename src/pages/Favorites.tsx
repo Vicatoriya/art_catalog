@@ -6,6 +6,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import ImageInformation from '../types/ImageInformation';
 import Loader from '@components/Loader';
+import { parseImages } from '../utils/parseImages';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
@@ -13,7 +14,6 @@ export default function Favorites() {
 
   useEffect(() => {
     getImages();
-    return;
   }, Object.keys(sessionStorage));
 
   const isEmptyTitle =
@@ -48,31 +48,10 @@ export default function Favorites() {
           alert('Ошибка HTTP: ' + response.status);
         }
       })
-      .then(function (json) {
-        setImages(parseImagesJSON(json));
+      .then(function (imagesInfo) {
+        setImages(parseImages(imagesInfo));
       })
       .finally(() => setLoading(false));
-  }
-
-  function parseImagesJSON(json: any): Array<ImageInformation> {
-    const arr: Array<ImageInformation> = [];
-    for (let i = 0; i < json.data.length; i++) {
-      arr[i] = {
-        id: json.data[i].id,
-        title: json.data[i].title,
-        date: json.data[i].date_display,
-        artist: json.data[i].artist_title,
-        imgURL:
-          json.config.iiif_url +
-          '/' +
-          json.data[i].image_id +
-          '/full/843,/0/default.jpg',
-      };
-      if (json.data[i].image_id === null) {
-        arr[i].imgURL = '';
-      }
-    }
-    return arr;
   }
 
   return (
