@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/art_catalog/static/js/main.204b598f.js",
+    "main.js": "/art_catalog/static/js/main.ff1bbd3b.js",
     "static/media/img_holder.webp": "/art_catalog/static/media/img_holder.29726f9fce3379c5ef09.webp",
     "index.html": "/art_catalog/index.html",
     "static/media/arrow.svg": "/art_catalog/static/media/arrow.61f0428620497541580881602485d833.svg",
-    "main.204b598f.js.map": "/art_catalog/static/js/main.204b598f.js.map"
+    "main.ff1bbd3b.js.map": "/art_catalog/static/js/main.ff1bbd3b.js.map"
   },
   "entrypoints": [
-    "static/js/main.204b598f.js"
+    "static/js/main.ff1bbd3b.js"
   ]
 }
