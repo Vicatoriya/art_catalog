@@ -8,7 +8,7 @@ import Footer from '@components/Footer';
 import Loader from '@components/Loader';
 import ImageInformation from '../types/ImageInformation';
 import StyledHeading from '@components/StyledHeading';
-import { parseImagesJSON } from '../utils/parseJSON';
+import { parseImages } from '../utils/parseImages';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
@@ -17,13 +17,12 @@ export default function Home() {
 
   useEffect(() => {
     getImages();
-    return;
   }, []);
 
   function getImages() {
     setLoading(true);
     fetch(
-      'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=40'
+      'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36'
     )
       .then(function (response) {
         if (response.ok) return response.json();
@@ -31,8 +30,8 @@ export default function Home() {
           alert('Ошибка HTTP: ' + response.status);
         }
       })
-      .then(function (json) {
-        setImages(parseImagesJSON(json));
+      .then(function (imagesInfo) {
+        setImages(parseImages(imagesInfo));
       })
       .finally(() => setLoading(false));
   }

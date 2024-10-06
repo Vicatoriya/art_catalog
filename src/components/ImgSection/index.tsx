@@ -15,7 +15,7 @@ export interface ImageProps {
   medium: string;
 }
 
-export default function Image(props: ImageProps) {
+export default function ImgSection(props: ImageProps) {
   const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
 
   const addToFavClickHandler = () => {

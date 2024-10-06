@@ -5,7 +5,7 @@ import ImgList from '@components/ImgList';
 import StandardHeading from '@components/StandardHeading';
 import Loader from '@components/Loader';
 import SortSelector from '@components/SortSelector';
-import { parseImagesJSON } from '../../utils/parseJSON';
+import { parseImages } from '../../utils/parseImages';
 import {
   SearchContainer,
   SearchIcon,
@@ -86,8 +86,8 @@ export default function SearchBar() {
           alert('Ошибка HTTP: ' + response.status);
         }
       })
-      .then(function (json) {
-        setImages(parseImagesJSON(json));
+      .then(function (imagesInfo) {
+        setImages(parseImages(imagesInfo));
       })
       .finally(() => setLoading(false));
   }

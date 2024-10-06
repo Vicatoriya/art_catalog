@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Gallery, GalleryWrapper } from './styled';
+import { GalleryWrapper, GalleryGrid } from './styled';
 import GalleryItem from '@components/GalleryItem';
 import Pagination from '@components/Pagination';
 import ImageInformation from '../../types/ImageInformation';
 
-interface SpecialGalleryProps {
+interface GalleryProps {
   totalPages: number;
   images: Array<ImageInformation>;
 }
 
-export default function SpecialGallery(props: SpecialGalleryProps) {
+export default function Gallery(props: GalleryProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -23,11 +23,11 @@ export default function SpecialGallery(props: SpecialGalleryProps) {
 
   return (
     <GalleryWrapper>
-      <Gallery className={isAnimating ? 'fade-out' : ''}>
+      <GalleryGrid className={isAnimating ? 'fade-out' : ''} role="gallery">
         <GalleryItem {...props.images[(currentPage - 1) * 3]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 1]} />
         <GalleryItem {...props.images[(currentPage - 1) * 3 + 2]} />
-      </Gallery>
+      </GalleryGrid>
       <Pagination
         currentPage={currentPage}
         totalPages={props.totalPages}

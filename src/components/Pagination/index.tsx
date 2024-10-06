@@ -71,7 +71,7 @@ export default function Pagination(props: PaginationProps) {
   };
 
   return (
-    <PaginationWrapper>
+    <PaginationWrapper role="pagination">
       <ArrowButton
         onClick={() => handlePageClick(props.currentPage - 1)}
         disabled={props.currentPage === 1}
@@ -82,6 +82,7 @@ export default function Pagination(props: PaginationProps) {
       <ArrowButton
         onClick={() => handlePageClick(props.currentPage + 1)}
         disabled={props.currentPage === props.totalPages}
+        role="Next"
       >
         &gt;
       </ArrowButton>
