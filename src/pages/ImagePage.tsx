@@ -27,7 +27,7 @@ export default function ImagePage() {
       .then(function (response) {
         if (response.ok) return response.json();
         else {
-          alert('Ошибка HTTP: ' + response.status);
+          alert('HTTP error: ' + response.status);
         }
       })
       .then(function (imageInfo) {
