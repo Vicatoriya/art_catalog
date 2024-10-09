@@ -6,14 +6,17 @@ import Heading from '@components/StandardHeading';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import Loader from '@components/Loader';
-import ImageInformation from '../types/ImageInformation';
+import ImageInformation from '../mytypes/ImageInformation';
 import StyledHeading from '@components/StyledHeading';
 import { parseImages } from '../utils/parseImages';
+import {
+  GALLERY_PAGES_AMOUNT,
+  GALLERY_IMAGES_PER_PAGE_AMOUNT,
+} from '../constants/GalleryConstnats';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const totalSpecialGalleryPages = 10;
 
   useEffect(() => {
     getImages();
@@ -52,8 +55,11 @@ export default function Home() {
             <SearchBar />
             <Heading text="Our special gallery" />
             <Gallery
-              images={images.slice(0, totalSpecialGalleryPages * 3)}
-              totalPages={totalSpecialGalleryPages}
+              images={images.slice(
+                0,
+                GALLERY_PAGES_AMOUNT * GALLERY_IMAGES_PER_PAGE_AMOUNT
+              )}
+              totalPages={GALLERY_PAGES_AMOUNT}
             />
             <Heading text="Other works for you" />
             <ImgList imgs={images.slice(-6)} />

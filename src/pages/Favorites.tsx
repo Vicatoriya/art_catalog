@@ -4,7 +4,7 @@ import Heading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import ImageInformation from '../types/ImageInformation';
+import ImageInformation from '../mytypes/ImageInformation';
 import Loader from '@components/Loader';
 import { parseImages } from '../utils/parseImages';
 

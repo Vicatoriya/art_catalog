@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { MenuContext } from '@components/NavState';
+import { MenuContext } from '@utils/MenuContext';
 import { Menu, MenuLink } from './styled';
 
 export default function SideMenu() {
@@ -7,7 +7,6 @@ export default function SideMenu() {
 
   return (
     <Menu open={isMenuOpen}>
-      {' '}
       <MenuLink href="/art_catalog">Main</MenuLink>
       <MenuLink href="/art_catalog/#/favorites">Favorites</MenuLink>
     </Menu>

@@ -1,11 +1,6 @@
-import { createContext, useState } from 'react';
-import MenuContextProps from 'src/types/MenuContextProps';
-import NavStateProps from 'src/types/NavStateProps';
-
-export const MenuContext = createContext<MenuContextProps>({
-  isMenuOpen: false,
-  toggleMenuMode: () => {},
-});
+import { useState } from 'react';
+import { MenuContext } from '@utils/MenuContext';
+import NavStateProps from 'src/mytypes/NavStateProps';
 
 export default function NavState(props: NavStateProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);

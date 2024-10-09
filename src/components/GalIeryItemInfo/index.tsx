@@ -1,5 +1,5 @@
 import { InfoWrapper, SingleLineEllipsis } from './styled';
-import ImageInformation from '../../types/ImageInformation';
+import ImageInformation from '../../mytypes/ImageInformation';
 
 export default function GalleryItemInfo(props: ImageInformation) {
   return (

@@ -28,7 +28,7 @@ export const ImageSection = styled.div`
 
 export const InfoSection = styled.div`
   flex: 2;
-  color: white;
+  color: rgba(51, 51, 51, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

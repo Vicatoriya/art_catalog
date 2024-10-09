@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import useOnClickOutside from '../../hooks/onClickOutside';
-import { MenuContext } from '@components/NavState';
+import { MenuContext } from '@utils/MenuContext';
 import HamburgerButton from '@components/HamburgerButton';
 import SideMenu from '@components/SideMenu';
 import { Navbar } from './styled';

@@ -1,0 +1,2 @@
+export const GALLERY_PAGES_AMOUNT = 10;
+export const GALLERY_IMAGES_PER_PAGE_AMOUNT = 3;

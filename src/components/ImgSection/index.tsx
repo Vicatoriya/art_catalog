@@ -2,33 +2,30 @@ import { useState } from 'react';
 import { ImageWrapper, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
-import ImgProps from 'src/types/ImgProps';
+import ImgProps from 'src/mytypes/ImgProps';
+import SessionStorageService from '@utils/SessionStorageService';
+import favClickHandler from '@utils/favoriteClickHandler';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 
 export default function ImgSection(props: ImgProps) {
   const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
+  const storage = new SessionStorageService();
 
-  const addToFavClickHandler = () => {
-    if (sessionStorage.getItem(props.id) != null) {
-      sessionStorage.removeItem(props.id);
-    } else {
-      sessionStorage.setItem(props.id, '');
-    }
+  const clickHandler = () => {
+    favClickHandler(props.id, storage);
   };
 
   const handleError = () => {
     setImgSrc(imageHolder);
   };
 
-  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, props.id);
 
   return (
     <ImageWrapper>
       <ImageSection>
         <img src={imgSrc} alt={props.title} id="main" onError={handleError} />
-        <FavIcon
-          clickHandler={addToFavClickHandler}
-          isFavorited={isFavorited}
-        />
+        <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
       </ImageSection>
       <InfoSection>
         <div>

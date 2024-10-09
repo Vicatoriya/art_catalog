@@ -1,5 +1,5 @@
 import { InfoWrapper } from './styled';
-import ImageInformation from '../../types/ImageInformation';
+import ImageInformation from '../../mytypes/ImageInformation';
 
 export default function ImgCardInfo(props: ImageInformation) {
   return (

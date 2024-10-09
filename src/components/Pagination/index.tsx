@@ -1,5 +1,5 @@
 import { PageButton, PaginationWrapper, ArrowButton } from './styled';
-import PaginationProps from 'src/types/PaginationProps';
+import PaginationProps from 'src/mytypes/PaginationProps';
 
 export default function Pagination(props: PaginationProps) {
   const handlePageClick = (page: number) => {
@@ -65,17 +65,25 @@ export default function Pagination(props: PaginationProps) {
     return pages;
   };
 
+  const beforeArrowButtonClickHandler = () => {
+    handlePageClick(props.currentPage - 1);
+  };
+
+  const afterArrowButtonClickHandler = () => {
+    handlePageClick(props.currentPage + 1);
+  };
+
   return (
     <PaginationWrapper role="pagination">
       <ArrowButton
-        onClick={() => handlePageClick(props.currentPage - 1)}
+        onClick={beforeArrowButtonClickHandler}
         disabled={props.currentPage === 1}
       >
         &lt;
       </ArrowButton>
       {renderPageNumbers()}
       <ArrowButton
-        onClick={() => handlePageClick(props.currentPage + 1)}
+        onClick={afterArrowButtonClickHandler}
         disabled={props.currentPage === props.totalPages}
         role="Next"
       >

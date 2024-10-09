@@ -1,5 +1,5 @@
 import { Heading, Feature } from './styled';
-import StyledHeadingProps from 'src/types/StyledHeadingProps';
+import StyledHeadingProps from 'src/mytypes/StyledHeadingProps';
 
 export default function StyledHeading(props: StyledHeadingProps) {
   return (

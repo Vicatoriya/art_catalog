@@ -1,4 +1,4 @@
-import ImageInformation from 'src/types/ImageInformation';
+import ImageInformation from 'src/mytypes/ImageInformation';
 
 export function parseImages(imagesInfo: any): Array<ImageInformation> {
   const arr: Array<ImageInformation> = [];

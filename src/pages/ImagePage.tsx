@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import ImgSection from '@components/ImgSection';
 import { useParams } from 'react-router-dom';
-import { ImageProps } from '@components/ImgSection';
+import ImgProps from 'src/mytypes/ImgProps';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
 
 export default function ImagePage() {
-  const [imgInfo, setImgInfo] = useState<ImageProps>();
+  const [imgInfo, setImgInfo] = useState<ImgProps>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,8 +36,8 @@ export default function ImagePage() {
       .finally(() => setLoading(false));
   }
 
-  function parseImage(imageInfo: any): ImageProps {
-    const img: ImageProps = {
+  function parseImage(imageInfo: any): ImgProps {
+    const img: ImgProps = {
       id: id as string,
       dimensions: imageInfo.data.dimensions,
       place: imageInfo.data.place_of_origin,
@@ -66,7 +66,7 @@ export default function ImagePage() {
         <>
           <Header />
           <main>
-            <ImgSection {...(imgInfo as ImageProps)} />
+            <ImgSection {...(imgInfo as ImgProps)} />
           </main>
           <Footer />
         </>
