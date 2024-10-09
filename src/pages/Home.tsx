@@ -11,8 +11,8 @@ import {
   GALLERY_PAGES_AMOUNT,
 } from '@constants/GalleryConstants';
 import ImageInformation from '@mytypes/ImageInformation';
-import { parseImages } from '@utils/parseImages';
 import { useEffect, useState } from 'react';
+import { parseImages } from 'src/api/parseImages';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);

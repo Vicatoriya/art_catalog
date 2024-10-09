@@ -5,8 +5,8 @@ import SortSelector from '@components/SortSelector';
 import StandardHeading from '@components/StandardHeading';
 import { useEffect, useState } from 'react';
 
+import { parseImages } from '../../api/parseImages';
 import ImageInformation from '../../mytypes/ImageInformation';
-import { parseImages } from '../../utils/parseImages';
 import {
   ErrorMessage,
   SearchContainer,

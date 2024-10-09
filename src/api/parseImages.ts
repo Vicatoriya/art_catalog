@@ -1,6 +1,15 @@
 import ImageInformation from 'src/mytypes/ImageInformation';
 
-export function parseImages(imagesInfo: any): Array<ImageInformation> {
+export function parseImages(imagesInfo: {
+  data: Array<{
+    id: string;
+    title: string;
+    artist_title: string;
+    date_display: string;
+    image_id: string;
+  }>;
+  config: { iiif_url: string };
+}): Array<ImageInformation> {
   const arr: Array<ImageInformation> = [];
   for (let i = 0; i < imagesInfo.data.length; i++) {
     arr[i] = {

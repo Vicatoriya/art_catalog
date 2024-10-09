@@ -6,9 +6,9 @@ import Heading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
-import { parseImages } from '@utils/parseImages';
 import SessionStorageService from '@utils/SessionStorageService';
 import { useEffect, useState } from 'react';
+import { parseImages } from 'src/api/parseImages';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
