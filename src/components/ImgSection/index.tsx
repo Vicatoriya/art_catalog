@@ -2,20 +2,9 @@ import { useState } from 'react';
 import { ImageWrapper, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '@components/FavIcon';
 import imageHolder from '@assets/img_holder.webp';
+import ImgProps from 'src/types/ImgProps';
 
-export interface ImageProps {
-  id: string;
-  imageURL: string;
-  title: string;
-  artist: string;
-  date: string;
-  dimensions: string;
-  place: string;
-  credit_line: string;
-  medium: string;
-}
-
-export default function ImgSection(props: ImageProps) {
+export default function ImgSection(props: ImgProps) {
   const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
 
   const addToFavClickHandler = () => {

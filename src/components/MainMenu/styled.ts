@@ -11,7 +11,7 @@ export const Navbar = styled.nav`
   max-width: 100%;
   margin: 0;
   align-items: center;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 1);
   color: rgb(248, 248, 248);
   flex-direction: row;
   justify-content: flex-start;

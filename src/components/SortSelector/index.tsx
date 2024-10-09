@@ -1,9 +1,5 @@
 import { SelectWrapper, SortLabel, SortSelect } from './styled';
-
-interface SortSelectorProps {
-  onSortChange: (criteria: string) => void;
-  selectedSort: string;
-}
+import SortSelectorProps from 'src/types/SortSelectorProps';
 
 const sortOptions: Array<string> = ['title', 'artist', 'date'];
 

@@ -4,7 +4,7 @@ export const ItemWrapper = styled.div`
     display:flex;
     position:relative;
     flex-direction:column;
-    background-color: white;
+    background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 260px;

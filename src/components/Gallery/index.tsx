@@ -2,12 +2,7 @@ import { useState } from 'react';
 import { GalleryWrapper, GalleryGrid } from './styled';
 import GalleryItem from '@components/GalleryItem';
 import Pagination from '@components/Pagination';
-import ImageInformation from '../../types/ImageInformation';
-
-interface GalleryProps {
-  totalPages: number;
-  images: Array<ImageInformation>;
-}
+import GalleryProps from 'src/types/GalleryProps';
 
 export default function Gallery(props: GalleryProps) {
   const [currentPage, setCurrentPage] = useState(1);

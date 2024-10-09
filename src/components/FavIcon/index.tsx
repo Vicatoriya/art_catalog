@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Icon } from './styled';
 import fav from '@assets/fav_bright.png';
+import FavIconProps from 'src/types/FavIconProps';
 
-interface FavIconProps {
-  clickHandler: () => void;
-  isFavorited: boolean;
-}
 export default function FavIcon(props: FavIconProps) {
   const [isFav, setIsFav] = useState(false);
 

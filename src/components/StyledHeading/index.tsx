@@ -1,9 +1,6 @@
 import { Heading, Feature } from './styled';
-interface StyledHeadingProps {
-  text_start: string;
-  text_end: string;
-  feature: string;
-}
+import StyledHeadingProps from 'src/types/StyledHeadingProps';
+
 export default function StyledHeading(props: StyledHeadingProps) {
   return (
     <Heading>

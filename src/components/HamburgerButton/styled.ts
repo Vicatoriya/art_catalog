@@ -79,7 +79,7 @@ export const Bar = styled.span`
   display: block;
   width: 40px;
   height: 5px;
-  background-color: #fff;
+  background-color: white;
 
   @media (max-width: 420px) {
     width: 28px;

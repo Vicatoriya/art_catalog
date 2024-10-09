@@ -6,7 +6,7 @@ export const InfoWrapper = styled.div`
   height: 20%;
   #title {
     margin: 0;
-    color: #333;
+    color: rgba(51, 51, 51, 1);
     font-weight: bold;
   }
   #artist {

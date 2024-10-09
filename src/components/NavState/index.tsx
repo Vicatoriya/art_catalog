@@ -1,18 +1,11 @@
-import { createContext, useState, ReactNode } from 'react';
-
-interface MenuContextProps {
-  isMenuOpen: boolean;
-  toggleMenuMode: () => void;
-}
+import { createContext, useState } from 'react';
+import MenuContextProps from 'src/types/MenuContextProps';
+import NavStateProps from 'src/types/NavStateProps';
 
 export const MenuContext = createContext<MenuContextProps>({
   isMenuOpen: false,
   toggleMenuMode: () => {},
 });
-
-interface NavStateProps {
-  children: ReactNode;
-}
 
 export default function NavState(props: NavStateProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);

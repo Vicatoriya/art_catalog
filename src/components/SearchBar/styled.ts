@@ -12,8 +12,8 @@ export const SearchContainer = styled.div<{ $error: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: ${(props) => (props.$error ? '2px solid red' : 'none')};
-  background-color: #f5f5f5;
+  border: ${(props) => (props.$error ? '2px solid red;' : 'none')};
+  background-color: rgb(245, 245, 245);
   border-radius: 25px;
   padding: 10px 20px;
   width: 80%;
@@ -27,10 +27,10 @@ export const SearchInput = styled.input`
   outline: none;
   flex: 1;
   font-size: 16px;
-  color: #777;
+  color: rgba(119, 119, 119, 1);
 
   ::placeholder {
-    color: #aaa;
+    color: rgba(170, 170, 170, 1);
   }
 `;
 
@@ -44,7 +44,7 @@ export const SearchIcon = styled.button`
   img {
     width: 20px;
     height: 20px;
-    color: #555;
+    color: rgba(85, 85, 85, 1);
   }
 `;
 

@@ -1,8 +1,6 @@
 import { Heading } from './styled';
+import StandardHeadingProps from 'src/types/StandardHeadingProps';
 
-interface StandardHeadingProps {
-  text: string;
-}
 export default function StandardHeading(props: StandardHeadingProps) {
   return <Heading>{props.text}</Heading>;
 }

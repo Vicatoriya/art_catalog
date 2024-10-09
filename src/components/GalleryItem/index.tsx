@@ -15,6 +15,9 @@ export default function GalleryItem(props: ImageInformation) {
   useEffect(() => {
     if (props.imgURL) {
       setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2500);
       setImgSrc(props.imgURL);
     }
   }, [props.imgURL]);
