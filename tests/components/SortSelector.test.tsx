@@ -1,7 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import SortSelector from '../../src/components/SortSelector';
-import React from 'react';
 import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+
+import SortSelector from '../../src/components/SortSelector';
 
 describe('SortSelector component', () => {
   const mockOnSortChange = jest.fn();

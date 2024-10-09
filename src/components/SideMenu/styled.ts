@@ -1,11 +1,7 @@
+import { images } from '@constants/Images';
 import styled, { css } from 'styled-components';
-import arrow from '../../assets/arrow.svg';
 
-interface MenuProps {
-  open: boolean;
-}
-
-export const Menu = styled.nav<MenuProps>`
+export const Menu = styled.nav<{ open: boolean }>`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -40,7 +36,7 @@ export const MenuLink = styled.a`
   margin-top: 25px;
   margin-bottom: 25px;
   padding-left: 16%;
-  background-image: url(${arrow});
+  background-image: url(${images.arrow});
   background-position: 85% 50%;
   background-size: 36px;
   background-repeat: no-repeat;

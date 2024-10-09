@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import ImgSection from '@components/ImgSection';
-import { useParams } from 'react-router-dom';
-import ImgProps from 'src/mytypes/ImgProps';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
+import ImgSection from '@components/ImgSection';
 import Loader from '@components/Loader';
+import ImgProps from '@mytypes/ImgProps';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function ImagePage() {
   const [imgInfo, setImgInfo] = useState<ImgProps>();

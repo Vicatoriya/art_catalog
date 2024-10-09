@@ -1,8 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MenuContext } from '../../src/components/NavState';
-import HamburgerButton from '../../src/components/HamburgerButton';
-import React from 'react';
 import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+
+import HamburgerButton from '../../src/components/HamburgerButton';
+import { MenuContext } from '../../src/components/NavState';
 
 describe('HamburgerButton component', () => {
   const toggleMenuModeMock = jest.fn();

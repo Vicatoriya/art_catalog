@@ -1,13 +1,13 @@
+import { GlobalStyle } from '@constants/GlobalStyle';
+import { routes } from '@constants/Routes';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import { GlobalStyle } from './constants/GlobalStyle';
-import { ROUTES } from './constants/Routes';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const routeComponents = ROUTES.map(({ path, component }, key) => (
+const routeComponents = routes.map(({ path, component }, key) => (
   <Route path={path} Component={component} key={key} />
 ));
 root.render(

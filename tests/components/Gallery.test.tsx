@@ -1,9 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+
 import Gallery from '../../src/components/Gallery';
 import ImageInformation from '../../src/types/ImageInformation';
-import { MemoryRouter } from 'react-router-dom';
 
 const mockImages: Array<ImageInformation> = [
   {

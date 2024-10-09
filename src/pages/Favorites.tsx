@@ -1,25 +1,26 @@
-import { useState, useEffect } from 'react';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
 import ImgList from '@components/ImgList';
+import Loader from '@components/Loader';
 import Heading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
-import Header from '@components/Header';
-import Footer from '@components/Footer';
-import ImageInformation from '../mytypes/ImageInformation';
-import Loader from '@components/Loader';
-import { parseImages } from '../utils/parseImages';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ImageInformation from '@mytypes/ImageInformation';
+import { parseImages } from '@utils/parseImages';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useEffect, useState } from 'react';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const storage = new SessionStorageService();
 
   useEffect(() => {
     getImages();
-  }, Object.keys(sessionStorage));
+  }, storage.getItem(FAVORITES_LIST_KEY));
 
   const isEmptyTitle =
-    Object.values(sessionStorage).filter((value) => {
-      return value === '';
-    }).length == 0 ? (
+    storage.getItem<Array<string>>(FAVORITES_LIST_KEY)?.length === 0 ? (
       <StyledHeading
         text_start="It's "
         feature="empty"
@@ -28,12 +29,11 @@ export default function Favorites() {
     ) : null;
 
   function getImages() {
-    const ids = Object.keys(sessionStorage)
-      .filter((value) => {
-        return sessionStorage.getItem(value) === '';
-      })
-      .join(',');
-    if (ids.length === 0) {
+    if (!storage.hasItem(FAVORITES_LIST_KEY)) {
+      return;
+    }
+    const ids = storage.getItem<Array<string>>(FAVORITES_LIST_KEY)?.join(',');
+    if (ids?.length === 0) {
       return;
     }
     setLoading(true);

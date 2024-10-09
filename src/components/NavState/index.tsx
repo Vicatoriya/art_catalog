@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { MenuContext } from '@utils/MenuContext';
+import { useState } from 'react';
 import NavStateProps from 'src/mytypes/NavStateProps';
 
-export default function NavState(props: NavStateProps) {
+export default function NavState({ children }: NavStateProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenuMode() {
@@ -11,7 +11,7 @@ export default function NavState(props: NavStateProps) {
 
   return (
     <MenuContext.Provider value={{ isMenuOpen, toggleMenuMode }}>
-      {props.children}
+      {children}
     </MenuContext.Provider>
   );
 }

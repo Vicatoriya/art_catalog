@@ -1,8 +1,8 @@
-import Home from '../pages/Home';
 import Favorites from '../pages/Favorites';
+import Home from '../pages/Home';
 import ImagePage from '../pages/ImagePage';
 
-export const ROUTES = [
+export const routes = [
   {
     path: '/',
     component: Home,

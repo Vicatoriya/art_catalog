@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
 import searchImg from '@assets/search.png';
-import ImageInformation from '../../mytypes/ImageInformation';
 import ImgList from '@components/ImgList';
-import StandardHeading from '@components/StandardHeading';
 import Loader from '@components/Loader';
 import SortSelector from '@components/SortSelector';
+import StandardHeading from '@components/StandardHeading';
+import { useEffect, useState } from 'react';
+
+import ImageInformation from '../../mytypes/ImageInformation';
 import { parseImages } from '../../utils/parseImages';
 import {
+  ErrorMessage,
   SearchContainer,
+  SearchForm,
   SearchIcon,
   SearchInput,
-  SearchForm,
-  ErrorMessage,
 } from './styled';
 
 export default function SearchBar() {

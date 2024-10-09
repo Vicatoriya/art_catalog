@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { GalleryWrapper, GalleryGrid } from './styled';
 import GalleryItem from '@components/GalleryItem';
 import Pagination from '@components/Pagination';
-import GalleryProps from 'src/mytypes/GalleryProps';
+import GalleryProps from '@mytypes/GalleryProps';
+import { useState } from 'react';
 
-export default function Gallery(props: GalleryProps) {
+import { GalleryGrid, GalleryWrapper } from './styled';
+
+export default function Gallery({ totalPages, images }: GalleryProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -19,13 +20,13 @@ export default function Gallery(props: GalleryProps) {
   return (
     <GalleryWrapper>
       <GalleryGrid className={isAnimating ? 'fade-out' : ''} role="gallery">
-        <GalleryItem {...props.images[(currentPage - 1) * 3]} />
-        <GalleryItem {...props.images[(currentPage - 1) * 3 + 1]} />
-        <GalleryItem {...props.images[(currentPage - 1) * 3 + 2]} />
+        <GalleryItem {...images[(currentPage - 1) * 3]} />
+        <GalleryItem {...images[(currentPage - 1) * 3 + 1]} />
+        <GalleryItem {...images[(currentPage - 1) * 3 + 2]} />
       </GalleryGrid>
       <Pagination
         currentPage={currentPage}
-        totalPages={props.totalPages}
+        totalPages={totalPages}
         onPageChange={handlePageChange}
       />
     </GalleryWrapper>

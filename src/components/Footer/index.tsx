@@ -1,12 +1,12 @@
+import { images } from '@constants/Images';
+
 import { FooterWrapper } from './styled';
-import logo from '@assets/logo_dark.png';
-import modsen from '@assets/modsen.png';
 
 export default function Footer() {
   return (
     <FooterWrapper>
-      <img src={logo} alt="Museum logo" />
-      <img src={modsen} alt="Modsen logo" />
+      <img src={images.logo_dark} alt="Museum logo" />
+      <img src={images.modsen} alt="Modsen logo" />
     </FooterWrapper>
   );
 }

@@ -1,6 +1,7 @@
-import { Heading } from './styled';
 import StandardHeadingProps from 'src/mytypes/StandardHeadingProps';
 
-export default function StandardHeading(props: StandardHeadingProps) {
-  return <Heading>{props.text}</Heading>;
+import { Heading } from './styled';
+
+export default function StandardHeading({ text }: StandardHeadingProps) {
+  return <Heading>{text}</Heading>;
 }

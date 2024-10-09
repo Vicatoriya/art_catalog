@@ -12,17 +12,28 @@ export default class SessionStorageService {
 
   hasItemInArray<T>(key: string, item: T): boolean {
     const array = this.getItem<T[]>(key);
-    if (array === null) {
+    if (array === undefined) {
       return false;
     }
-    console.log(array.includes(item));
     return array.includes(item);
   }
 
-  getItem<T>(key: string): T | null {
+  removeItemFromArray<T>(key: string, item: T): void {
+    const array = this.getItem<T[]>(key);
+    if (!array) {
+      return;
+    }
+    const index = array.indexOf(item);
+    if (index >= 0) {
+      array.splice(index, 1);
+    }
+    this.setItem(key, array);
+  }
+
+  getItem<T>(key: string): T | undefined {
     const serializedValue = sessionStorage.getItem(key);
     if (serializedValue === null) {
-      return null;
+      return undefined;
     }
     return JSON.parse(serializedValue) as T;
   }
@@ -32,6 +43,6 @@ export default class SessionStorageService {
   }
 
   hasItem(key: string): boolean {
-    return sessionStorage.getItem(key) !== null;
+    return sessionStorage.getItem(key) !== undefined;
   }
 }

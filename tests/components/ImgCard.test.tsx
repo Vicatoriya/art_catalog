@@ -1,10 +1,12 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import ImgCard from '../../src/components/ImgCard';
-import imageHolder from '@assets/img_holder.webp';
-import ImageInformation from '../../src/types/ImageInformation';
 import '@testing-library/jest-dom';
+
+import imageHolder from '@assets/img_holder.webp';
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+
+import ImgCard from '../../src/components/ImgCard';
+import ImageInformation from '../../src/types/ImageInformation';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),

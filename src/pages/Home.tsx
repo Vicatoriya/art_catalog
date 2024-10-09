@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import SearchBar from '@components/SearchBar';
-import Gallery from '@components/Gallery';
-import ImgList from '@components/ImgList';
-import Heading from '@components/StandardHeading';
-import Header from '@components/Header';
 import Footer from '@components/Footer';
+import Gallery from '@components/Gallery';
+import Header from '@components/Header';
+import ImgList from '@components/ImgList';
 import Loader from '@components/Loader';
-import ImageInformation from '../mytypes/ImageInformation';
+import SearchBar from '@components/SearchBar';
+import Heading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
-import { parseImages } from '../utils/parseImages';
 import {
-  GALLERY_PAGES_AMOUNT,
   GALLERY_IMAGES_PER_PAGE_AMOUNT,
-} from '../constants/GalleryConstnats';
+  GALLERY_PAGES_AMOUNT,
+} from '@constants/GalleryConstants';
+import ImageInformation from '@mytypes/ImageInformation';
+import { parseImages } from '@utils/parseImages';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
