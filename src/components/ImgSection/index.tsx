@@ -1,5 +1,5 @@
-import imageHolder from '@assets/img_holder.webp';
-import { COMPONENTS } from '@constants/Components';
+import FavIcon from '@components/FavIcon';
+import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImgProps from '@mytypes/ImgProps';
 import favClickHandler from '@utils/favoriteClickHandler';
@@ -27,7 +27,7 @@ export default function ImgSection({
   };
 
   const handleError = () => {
-    setImgSrc(imageHolder);
+    setImgSrc(ICONS.imgHolder);
   };
 
   const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
@@ -36,10 +36,7 @@ export default function ImgSection({
     <ImageWrapper>
       <ImageSection>
         <img src={imgSrc} alt={title} id="main" onError={handleError} />
-        <COMPONENTS.FavIcon
-          clickHandler={clickHandler}
-          isFavorited={isFavorited}
-        />
+        <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
       </ImageSection>
       <InfoSection>
         <div>

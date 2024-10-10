@@ -1,5 +1,11 @@
 import getInfoFromAPI from '@api/getInfoFromAPI';
-import { COMPONENTS } from '@constants/Components';
+import ErrorPopUp from '@components/ErrorPopUp';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
+import ImgList from '@components/ImgList';
+import Loader from '@components/Loader';
+import StandardHeading from '@components/StandardHeading';
+import StyledHeading from '@components/StyledHeading';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
 import SessionStorageService from '@utils/SessionStorageService';
@@ -16,11 +22,7 @@ export default function Favorites() {
   }, []);
 
   const isEmptyTitle = !storage.hasItem(FAVORITES_LIST_KEY) ? (
-    <COMPONENTS.StyledHeading
-      text_start="It's "
-      feature="empty"
-      text_end=" now("
-    />
+    <StyledHeading text_start="It's " feature="empty" text_end=" now(" />
   ) : null;
 
   function getImages() {
@@ -49,26 +51,26 @@ export default function Favorites() {
   return (
     <>
       {loading ? (
-        <COMPONENTS.Loader />
+        <Loader />
       ) : (
         <>
-          <COMPONENTS.ErrorPopUp
+          <ErrorPopUp
             error={error}
             visible={error != ''}
             onClose={popUpCloseHandler}
           />
-          <COMPONENTS.Header />
+          <Header />
           <main>
-            <COMPONENTS.StyledHeading
+            <StyledHeading
               text_start="Here Are Your "
               feature="Favorites"
               text_end=""
             />
-            <COMPONENTS.StandardHeading text="Your favorites list" />
-            <COMPONENTS.ImgList imgs={images} />
+            <StandardHeading text="Your favorites list" />
+            <ImgList imgs={images} />
             {isEmptyTitle}
           </main>
-          <COMPONENTS.Footer />
+          <Footer />
         </>
       )}
     </>

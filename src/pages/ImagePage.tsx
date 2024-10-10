@@ -1,4 +1,8 @@
-import { COMPONENTS } from '@constants/Components';
+import ErrorPopUp from '@components/ErrorPopUp';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
+import ImgSection from '@components/ImgSection';
+import Loader from '@components/Loader';
 import ImgProps from '@mytypes/ImgProps';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -62,19 +66,19 @@ export default function ImagePage() {
   return (
     <>
       {loading ? (
-        <COMPONENTS.Loader />
+        <Loader />
       ) : (
         <>
-          <COMPONENTS.ErrorPopUp
+          <ErrorPopUp
             error={error}
             visible={error != ''}
             onClose={popUpCloseHandler}
           />
-          <COMPONENTS.Header />
+          <Header />
           <main>
-            <COMPONENTS.ImgSection {...(imgInfo as ImgProps)} />
+            <ImgSection {...(imgInfo as ImgProps)} />
           </main>
-          <COMPONENTS.Footer />
+          <Footer />
         </>
       )}
     </>

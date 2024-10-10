@@ -20,7 +20,7 @@ export default function FavIcon({ clickHandler, isFavorited }: FavIconProps) {
   return (
     <Icon onClick={toggleFavorite} $isActive={isFav}>
       <img
-        src={ICONS.fav}
+        src={ICONS.favBright}
         alt={isFav ? 'Remove from favorites' : 'Add to favorites'}
       />
     </Icon>

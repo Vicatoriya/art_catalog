@@ -1,6 +1,9 @@
 import { parseImages } from '@api/parseImages';
 import searchImg from '@assets/search.png';
-import { COMPONENTS } from '@constants/Components';
+import ImgList from '@components/ImgList';
+import Loader from '@components/Loader';
+import SortSelector from '@components/SortSelector';
+import StandardHeading from '@components/StandardHeading';
 import ImageInformation from '@mytypes/ImageInformation';
 import { useEffect, useState } from 'react';
 
@@ -122,15 +125,15 @@ export default function SearchBar() {
         </SearchIcon>
       </SearchContainer>
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      {loading && <COMPONENTS.Loader />}
+      {loading && <Loader />}
       {images.length > 0 && isResultsVisible && query !== '' && (
         <>
-          <COMPONENTS.StandardHeading text="Search results" />
-          <COMPONENTS.SortSelector
+          <StandardHeading text="Search results" />
+          <SortSelector
             selectedSort={sortCriteria}
             onSortChange={handleSortChange}
           />
-          <COMPONENTS.ImgList imgs={sortedImages} />
+          <ImgList imgs={sortedImages} />
         </>
       )}
       {images.length === 0 && isResultsVisible && <p>No results found</p>}

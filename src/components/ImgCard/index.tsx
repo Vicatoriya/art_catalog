@@ -1,4 +1,5 @@
-import { COMPONENTS } from '@constants/Components';
+import FavIcon from '@components/FavIcon';
+import ImgCardInfo from '@components/ImgCardInfo';
 import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
@@ -37,11 +38,8 @@ export default function ImgCard({
   return (
     <CardWrapper onClick={toggleImgCard}>
       <img id="main_pic" src={imgSrc} alt={title} onError={handleError} />
-      <COMPONENTS.ImgCardInfo date={date} artist={artist} title={title} />
-      <COMPONENTS.FavIcon
-        isFavorited={isFavorited}
-        clickHandler={clickHandler}
-      />
+      <ImgCardInfo date={date} artist={artist} title={title} />
+      <FavIcon isFavorited={isFavorited} clickHandler={clickHandler} />
     </CardWrapper>
   );
 }

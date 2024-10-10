@@ -1,8 +1,10 @@
-import { COMPONENTS } from '@constants/Components';
+import MainMenu from '@components/MainMenu';
+import NavState from '@components/NavState';
+
 export default function Header() {
   return (
-    <COMPONENTS.NavState>
-      <COMPONENTS.MainMenu />
-    </COMPONENTS.NavState>
+    <NavState>
+      <MainMenu />
+    </NavState>
   );
 }

@@ -1,4 +1,6 @@
-import { COMPONENTS } from '@constants/Components';
+import FavIcon from '@components/FavIcon';
+import GalleryItemInfo from '@components/GalIeryItemInfo';
+import Loader from '@components/Loader';
 import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
@@ -52,7 +54,7 @@ export default function GalleryItem({
 
   return (
     <ItemWrapper onClick={toggleImgCard} role="galItem">
-      {isLoading && <COMPONENTS.Loader />}
+      {isLoading && <Loader />}
       <Image
         src={imgSrc}
         alt={title}
@@ -61,11 +63,8 @@ export default function GalleryItem({
         onLoad={handleImageLoad}
         $isLoading={isLoading}
       />
-      <COMPONENTS.GalleryItemInfo date={date} artist={artist} title={title} />
-      <COMPONENTS.FavIcon
-        clickHandler={clickHandler}
-        isFavorited={isFavorited}
-      />
+      <GalleryItemInfo date={date} artist={artist} title={title} />
+      <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
     </ItemWrapper>
   );
 }

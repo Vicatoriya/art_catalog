@@ -1,5 +1,13 @@
 import getInfoFromAPI from '@api/getInfoFromAPI';
-import { COMPONENTS } from '@constants/Components';
+import ErrorPopUp from '@components/ErrorPopUp';
+import Footer from '@components/Footer';
+import Gallery from '@components/Gallery';
+import Header from '@components/Header';
+import ImgList from '@components/ImgList';
+import Loader from '@components/Loader';
+import SearchBar from '@components/SearchBar';
+import StandardHeading from '@components/StandardHeading';
+import StyledHeading from '@components/StyledHeading';
 import {
   GALLERY_IMAGES_PER_PAGE_AMOUNT,
   GALLERY_PAGES_AMOUNT,
@@ -29,34 +37,34 @@ export default function Home() {
   return (
     <>
       {loading ? (
-        <COMPONENTS.Loader />
+        <Loader />
       ) : (
         <>
-          <COMPONENTS.ErrorPopUp
+          <ErrorPopUp
             error={error}
             visible={error !== ''}
             onClose={popUpCloseHandler}
           />
-          <COMPONENTS.Header />
+          <Header />
           <main>
-            <COMPONENTS.StyledHeading
+            <StyledHeading
               text_start="Let's Find Some "
               feature="Art"
               text_end=" Here!"
             />
-            <COMPONENTS.SearchBar />
-            <COMPONENTS.StandardHeading text="Our special gallery" />
-            <COMPONENTS.Gallery
+            <SearchBar />
+            <StandardHeading text="Our special gallery" />
+            <Gallery
               images={images.slice(
                 0,
                 GALLERY_PAGES_AMOUNT * GALLERY_IMAGES_PER_PAGE_AMOUNT
               )}
               totalPages={GALLERY_PAGES_AMOUNT}
             />
-            <COMPONENTS.StandardHeading text="Other works for you" />
-            <COMPONENTS.ImgList imgs={images.slice(-6)} />
+            <StandardHeading text="Other works for you" />
+            <ImgList imgs={images.slice(-6)} />
           </main>
-          <COMPONENTS.Footer />
+          <Footer />
         </>
       )}
     </>
