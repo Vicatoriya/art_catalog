@@ -1,4 +1,4 @@
-import ImageInformation from './ImageInformation';
+import ImageInformation from '@mytypes/ImageInformation';
 
 export default interface ImagesAPIData {
   data: Array<ImageInformation>;

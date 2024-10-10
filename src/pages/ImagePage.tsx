@@ -6,6 +6,7 @@ import Header from '@components/Header';
 import ImgSection from '@components/ImgSection';
 import Loader from '@components/Loader';
 import ExtendedImageInformation from '@mytypes/ExtendedImageInformation';
+import ImageAPIData from '@mytypes/ImageAPIData';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -29,8 +30,8 @@ export default function ImagePage() {
       setLoading,
       setError,
     });
-    if (!result.error) {
-      setImgInfo(parseImageInfo(result));
+    if (result !== null) {
+      setImgInfo(parseImageInfo(result as ImageAPIData));
     }
   };
 

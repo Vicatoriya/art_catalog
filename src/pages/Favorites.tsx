@@ -9,6 +9,7 @@ import StandardHeading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
 import SessionStorageService from '@utils/SessionStorageService';
 import { useEffect, useState } from 'react';
 
@@ -42,8 +43,8 @@ export default function Favorites() {
       setError,
       setLoading,
     });
-    if (!result.error) {
-      setImages(parseImagesInfo(result));
+    if (result !== null) {
+      setImages(parseImagesInfo(result as ImagesAPIData));
     }
   };
 

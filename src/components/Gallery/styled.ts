@@ -14,12 +14,6 @@ export const GalleryGrid = styled.div`
   align-items: center;
   gap: 20px;
   transition: opacity 0.5s ease-in-out;
-  opacity: 1;
-
-  &.fade-out {
-    opacity: 0;
-  }
-
   @media (max-width: 420px) {
     gap: 10px;
   }

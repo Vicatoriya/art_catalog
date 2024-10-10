@@ -1,24 +1,24 @@
 import getInfoFromAPIProps from '@mytypes/GetInfoFromAPIProps';
+import ImageAPIData from '@mytypes/ImageAPIData';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
 
 export default async function getInfoFromAPI({
   request,
   setLoading,
   setError,
-}: getInfoFromAPIProps): Promise<any> {
+}: getInfoFromAPIProps): Promise<ImagesAPIData | ImageAPIData | null> {
   setLoading(true);
   try {
     const response = await fetch(request);
     if (!response.ok) {
-      const errorMessage = `HTTP error: ${response.status}`;
-      setError(errorMessage);
-      return { error: errorMessage };
+      setError(`HTTP error: ${response.status}`);
+      return null;
     }
     const imagesInfo = await response.json();
     return imagesInfo;
   } catch {
-    const errorMessage = 'Failed to fetch data';
-    setError(errorMessage);
-    return { error: errorMessage };
+    setError('Failed to fetch data');
+    return null;
   } finally {
     setLoading(false);
   }

@@ -9,11 +9,9 @@ import Loader from '@components/Loader';
 import SearchBar from '@components/SearchBar';
 import StandardHeading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
-import {
-  GALLERY_IMAGES_PER_PAGE_AMOUNT,
-  GALLERY_PAGES_AMOUNT,
-} from '@constants/GalleryConstants';
+import { GALLERY_PAGES_AMOUNT } from '@constants/GalleryConstants';
 import ImageInformation from '@mytypes/ImageInformation';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -24,12 +22,12 @@ export default function Home() {
   const fetchImages = async () => {
     const result = await getInfoFromAPI({
       request:
-        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36',
+        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=6',
       setLoading,
       setError,
     });
-    if (!result.error) {
-      setImages(parseImagesInfo(result));
+    if (result !== null) {
+      setImages(parseImagesInfo(result as ImagesAPIData));
     }
   };
 
@@ -61,15 +59,9 @@ export default function Home() {
             />
             <SearchBar />
             <StandardHeading text="Our special gallery" />
-            <Gallery
-              firstImages={images.slice(
-                0,
-                GALLERY_PAGES_AMOUNT * GALLERY_IMAGES_PER_PAGE_AMOUNT
-              )}
-              totalPages={GALLERY_PAGES_AMOUNT}
-            />
+            <Gallery totalPages={GALLERY_PAGES_AMOUNT} />
             <StandardHeading text="Other works for you" />
-            <ImgList imgs={images.slice(-6)} />
+            <ImgList imgs={images} />
           </main>
           <Footer />
         </>

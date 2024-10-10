@@ -3,10 +3,10 @@ import GalleryItemInfo from '@components/GalIeryItemInfo';
 import Loader from '@components/Loader';
 import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
-import ImageInformation from '@mytypes/ImageInformation';
+import GalleryItemProps from '@mytypes/GalleryItemProps';
 import favClickHandler from '@utils/favoriteClickHandler';
 import SessionStorageService from '@utils/SessionStorageService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Image, ItemWrapper } from './styled';
@@ -17,21 +17,11 @@ export default function GalleryItem({
   artist_title,
   date_display,
   image_id,
-}: ImageInformation) {
+  isLoading,
+}: GalleryItemProps) {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string>(image_id);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const storage = new SessionStorageService();
-
-  useEffect(() => {
-    if (image_id) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2500);
-      setImgSrc(image_id);
-    }
-  }, [image_id]);
 
   const toggleImgCard = () => {
     navigate('/image/' + id);
@@ -45,11 +35,6 @@ export default function GalleryItem({
 
   const handleError = () => {
     setImgSrc(ICONS.imgHolder);
-    setIsLoading(false);
-  };
-
-  const handleImageLoad = () => {
-    setIsLoading(false);
   };
 
   return (
@@ -60,7 +45,6 @@ export default function GalleryItem({
         alt={title}
         onError={handleError}
         role="mainImg"
-        onLoad={handleImageLoad}
         $isLoading={isLoading}
       />
       <GalleryItemInfo
