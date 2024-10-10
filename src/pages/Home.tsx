@@ -23,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     getInfoFromAPI({
       request:
-        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36',
+        'https://api.artic.edu/api/v1/artworks?page=4&fields=id,image_id,title,artist_title,date_display&limit=36',
       setLoading,
       setError,
       setImages,

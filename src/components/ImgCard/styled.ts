@@ -9,6 +9,7 @@ export const CardWrapper = styled.div`
   padding: 15px;
   position: relative;
   cursor: pointer;
+
   & #main_pic {
     min-width: 80px;
     width: 80px;
