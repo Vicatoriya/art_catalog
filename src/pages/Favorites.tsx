@@ -1,32 +1,27 @@
-import Footer from '@components/Footer';
-import Header from '@components/Header';
-import ImgList from '@components/ImgList';
-import Loader from '@components/Loader';
-import Heading from '@components/StandardHeading';
-import StyledHeading from '@components/StyledHeading';
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { COMPONENTS } from '@constants/Components';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImageInformation from '@mytypes/ImageInformation';
 import SessionStorageService from '@utils/SessionStorageService';
 import { useEffect, useState } from 'react';
-import { parseImages } from 'src/api/parseImages';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
   const storage = new SessionStorageService();
 
   useEffect(() => {
     getImages();
-  }, storage.getItem(FAVORITES_LIST_KEY));
+  }, []);
 
-  const isEmptyTitle =
-    storage.getItem<Array<string>>(FAVORITES_LIST_KEY)?.length === 0 ? (
-      <StyledHeading
-        text_start="It's "
-        feature="empty"
-        text_end=" now("
-      ></StyledHeading>
-    ) : null;
+  const isEmptyTitle = !storage.hasItem(FAVORITES_LIST_KEY) ? (
+    <COMPONENTS.StyledHeading
+      text_start="It's "
+      feature="empty"
+      text_end=" now("
+    />
+  ) : null;
 
   function getImages() {
     if (!storage.hasItem(FAVORITES_LIST_KEY)) {
@@ -36,42 +31,44 @@ export default function Favorites() {
     if (ids?.length === 0) {
       return;
     }
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks?ids=' +
+    getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks?ids=' +
         ids +
-        '&fields=id,image_id,title,artist_title,date_display'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
-      })
-      .finally(() => setLoading(false));
+        '&fields=id,image_id,title,artist_title,date_display',
+      setLoading,
+      setError,
+      setImages,
+    });
   }
+
+  const popUpCloseHandler = () => {
+    setError('');
+  };
 
   return (
     <>
       {loading ? (
-        <Loader />
+        <COMPONENTS.Loader />
       ) : (
         <>
-          <Header />
+          <COMPONENTS.ErrorPopUp
+            error={error}
+            visible={error != ''}
+            onClose={popUpCloseHandler}
+          />
+          <COMPONENTS.Header />
           <main>
-            <StyledHeading
+            <COMPONENTS.StyledHeading
               text_start="Here Are Your "
               feature="Favorites"
               text_end=""
             />
-            <Heading text="Your favorites list"></Heading>
-            <ImgList imgs={images} />
+            <COMPONENTS.StandardHeading text="Your favorites list" />
+            <COMPONENTS.ImgList imgs={images} />
             {isEmptyTitle}
           </main>
-          <Footer />
+          <COMPONENTS.Footer />
         </>
       )}
     </>

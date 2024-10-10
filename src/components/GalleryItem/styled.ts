@@ -19,10 +19,11 @@ export const ItemWrapper = styled.div`
       height:270px;
     }
 `;
-export const Image = styled.img`
+export const Image = styled.img<{ $isLoading: boolean }>`
   width: 100%;
   height: 80%;
   object-fit: cover;
+  display: ${(props) => (props.$isLoading ? 'none' : 'block')};
 
   @media (max-width: 420px) {
     height: 75%;

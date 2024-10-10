@@ -1,6 +1,5 @@
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
-
-import SessionStorageService from './SessionStorageService';
+import SessionStorageService from '@utils/SessionStorageService';
 
 export default function favClickHandler(
   imgId: string,

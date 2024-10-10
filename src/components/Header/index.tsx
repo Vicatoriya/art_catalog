@@ -1,9 +1,8 @@
-import MainMenu from '@components/MainMenu';
-import NavState from '@components/NavState';
+import { COMPONENTS } from '@constants/Components';
 export default function Header() {
   return (
-    <NavState>
-      <MainMenu />
-    </NavState>
+    <COMPONENTS.NavState>
+      <COMPONENTS.MainMenu />
+    </COMPONENTS.NavState>
   );
 }

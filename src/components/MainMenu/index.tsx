@@ -1,10 +1,9 @@
-import HamburgerButton from '@components/HamburgerButton';
-import SideMenu from '@components/SideMenu';
-import { images } from '@constants/Images';
+import { COMPONENTS } from '@constants/Components';
+import { ICONS } from '@constants/Icons';
+import useOnClickOutside from '@hooks/onClickOutside';
 import { MenuContext } from '@utils/MenuContext';
 import { useContext, useRef } from 'react';
 
-import useOnClickOutside from '../../hooks/onClickOutside';
 import { Navbar } from './styled';
 
 export default function MainMenu() {
@@ -20,10 +19,10 @@ export default function MainMenu() {
   return (
     <header ref={node}>
       <Navbar>
-        <HamburgerButton />
-        <img src={images.logo_light} alt="Logo" />
+        <COMPONENTS.HamburgerButton />
+        <img src={ICONS.logoLight} alt="Logo" />
       </Navbar>
-      <SideMenu />
+      <COMPONENTS.SideMenu />
     </header>
   );
 }

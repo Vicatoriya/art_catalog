@@ -1,5 +1,5 @@
 import { SORT_OPTIONS } from '@constants/SortSelectorConstants';
-import SortSelectorProps from 'src/mytypes/SortSelectorProps';
+import SortSelectorProps from '@mytypes/SortSelectorProps';
 
 import { SelectWrapper, SortLabel, SortSelect } from './styled';
 

@@ -1,4 +1,4 @@
-import { images } from '@constants/Images';
+import { ICONS } from '@constants/Icons';
 import styled, { css } from 'styled-components';
 
 export const Menu = styled.nav<{ open: boolean }>`
@@ -36,7 +36,7 @@ export const MenuLink = styled.a`
   margin-top: 25px;
   margin-bottom: 25px;
   padding-left: 16%;
-  background-image: url(${images.arrow});
+  background-image: url(${ICONS.arrow});
   background-position: 85% 50%;
   background-size: 36px;
   background-repeat: no-repeat;

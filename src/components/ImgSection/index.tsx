@@ -1,5 +1,5 @@
 import imageHolder from '@assets/img_holder.webp';
-import FavIcon from '@components/FavIcon';
+import { COMPONENTS } from '@constants/Components';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import ImgProps from '@mytypes/ImgProps';
 import favClickHandler from '@utils/favoriteClickHandler';
@@ -36,7 +36,10 @@ export default function ImgSection({
     <ImageWrapper>
       <ImageSection>
         <img src={imgSrc} alt={title} id="main" onError={handleError} />
-        <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
+        <COMPONENTS.FavIcon
+          clickHandler={clickHandler}
+          isFavorited={isFavorited}
+        />
       </ImageSection>
       <InfoSection>
         <div>

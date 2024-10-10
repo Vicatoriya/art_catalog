@@ -1,4 +1,4 @@
-import StandardHeadingProps from 'src/mytypes/StandardHeadingProps';
+import StandardHeadingProps from '@mytypes/StandardHeadingProps';
 
 import { Heading } from './styled';
 

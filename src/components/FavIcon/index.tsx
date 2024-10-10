@@ -1,4 +1,4 @@
-import { images } from '@constants/Images';
+import { ICONS } from '@constants/Icons';
 import FavIconProps from '@mytypes/FavIconProps';
 import { useEffect, useState } from 'react';
 
@@ -20,7 +20,7 @@ export default function FavIcon({ clickHandler, isFavorited }: FavIconProps) {
   return (
     <Icon onClick={toggleFavorite} $isActive={isFav}>
       <img
-        src={images.fav}
+        src={ICONS.fav}
         alt={isFav ? 'Remove from favorites' : 'Add to favorites'}
       />
     </Icon>

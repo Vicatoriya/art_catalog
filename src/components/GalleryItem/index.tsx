@@ -1,13 +1,11 @@
-import imageHolder from '@assets/img_holder.webp';
-import FavIcon from '@components/FavIcon';
-import GalleryItemInfo from '@components/GalIeryItemInfo';
-import Loader from '@components/Loader';
+import { COMPONENTS } from '@constants/Components';
+import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ImageInformation from '@mytypes/ImageInformation';
 import favClickHandler from '@utils/favoriteClickHandler';
 import SessionStorageService from '@utils/SessionStorageService';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ImageInformation from 'src/mytypes/ImageInformation';
 
 import { Image, ItemWrapper } from './styled';
 
@@ -44,7 +42,7 @@ export default function GalleryItem({
   const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
 
   const handleError = () => {
-    setImgSrc(imageHolder);
+    setImgSrc(ICONS.imgHolder);
     setIsLoading(false);
   };
 
@@ -54,17 +52,20 @@ export default function GalleryItem({
 
   return (
     <ItemWrapper onClick={toggleImgCard} role="galItem">
-      {isLoading && <Loader />}
+      {isLoading && <COMPONENTS.Loader />}
       <Image
         src={imgSrc}
         alt={title}
         onError={handleError}
         role="mainImg"
         onLoad={handleImageLoad}
-        style={{ display: isLoading ? 'none' : 'block' }}
+        $isLoading={isLoading}
       />
-      <GalleryItemInfo date={date} artist={artist} title={title} />
-      <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
+      <COMPONENTS.GalleryItemInfo date={date} artist={artist} title={title} />
+      <COMPONENTS.FavIcon
+        clickHandler={clickHandler}
+        isFavorited={isFavorited}
+      />
     </ItemWrapper>
   );
 }

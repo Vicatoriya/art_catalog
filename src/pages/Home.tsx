@@ -1,70 +1,62 @@
-import Footer from '@components/Footer';
-import Gallery from '@components/Gallery';
-import Header from '@components/Header';
-import ImgList from '@components/ImgList';
-import Loader from '@components/Loader';
-import SearchBar from '@components/SearchBar';
-import Heading from '@components/StandardHeading';
-import StyledHeading from '@components/StyledHeading';
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { COMPONENTS } from '@constants/Components';
 import {
   GALLERY_IMAGES_PER_PAGE_AMOUNT,
   GALLERY_PAGES_AMOUNT,
 } from '@constants/GalleryConstants';
 import ImageInformation from '@mytypes/ImageInformation';
 import { useEffect, useState } from 'react';
-import { parseImages } from 'src/api/parseImages';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    getImages();
+    getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36',
+      setLoading,
+      setError,
+      setImages,
+    });
   }, []);
 
-  function getImages() {
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
-      })
-      .finally(() => setLoading(false));
-  }
+  const popUpCloseHandler = () => {
+    setError('');
+  };
 
   return (
     <>
       {loading ? (
-        <Loader />
+        <COMPONENTS.Loader />
       ) : (
         <>
-          <Header />
+          <COMPONENTS.ErrorPopUp
+            error={error}
+            visible={error !== ''}
+            onClose={popUpCloseHandler}
+          />
+          <COMPONENTS.Header />
           <main>
-            <StyledHeading
+            <COMPONENTS.StyledHeading
               text_start="Let's Find Some "
               feature="Art"
               text_end=" Here!"
             />
-            <SearchBar />
-            <Heading text="Our special gallery" />
-            <Gallery
+            <COMPONENTS.SearchBar />
+            <COMPONENTS.StandardHeading text="Our special gallery" />
+            <COMPONENTS.Gallery
               images={images.slice(
                 0,
                 GALLERY_PAGES_AMOUNT * GALLERY_IMAGES_PER_PAGE_AMOUNT
               )}
               totalPages={GALLERY_PAGES_AMOUNT}
             />
-            <Heading text="Other works for you" />
-            <ImgList imgs={images.slice(-6)} />
+            <COMPONENTS.StandardHeading text="Other works for you" />
+            <COMPONENTS.ImgList imgs={images.slice(-6)} />
           </main>
-          <Footer />
+          <COMPONENTS.Footer />
         </>
       )}
     </>

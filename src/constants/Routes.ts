@@ -2,7 +2,7 @@ import Favorites from '../pages/Favorites';
 import Home from '../pages/Home';
 import ImagePage from '../pages/ImagePage';
 
-export const routes = [
+export const ROUTES = [
   {
     path: '/',
     component: Home,

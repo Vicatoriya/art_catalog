@@ -1,4 +1,4 @@
-import StyledHeadingProps from 'src/mytypes/StyledHeadingProps';
+import StyledHeadingProps from '@mytypes/StyledHeadingProps';
 
 import { Feature, Heading } from './styled';
 

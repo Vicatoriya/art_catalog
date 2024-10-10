@@ -1,4 +1,4 @@
-import PaginationProps from 'src/mytypes/PaginationProps';
+import PaginationProps from '@mytypes/PaginationProps';
 
 import { ArrowButton, PageButton, PaginationWrapper } from './styled';
 

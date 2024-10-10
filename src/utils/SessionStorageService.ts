@@ -43,6 +43,6 @@ export default class SessionStorageService {
   }
 
   hasItem(key: string): boolean {
-    return sessionStorage.getItem(key) !== undefined;
+    return sessionStorage.getItem(key) != null;
   }
 }
