@@ -1,63 +1,38 @@
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImageInfo } from '@api/parseImages';
 import ErrorPopUp from '@components/ErrorPopUp';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
 import ImgSection from '@components/ImgSection';
 import Loader from '@components/Loader';
-import ImgProps from '@mytypes/ImgProps';
+import ExtendedImageInformation from '@mytypes/ExtendedImageInformation';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function ImagePage() {
-  const [imgInfo, setImgInfo] = useState<ImgProps>();
+  const [imgInfo, setImgInfo] = useState<ExtendedImageInformation>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    getImgInfo();
+    fetchImages();
   }, []);
 
   const { id } = useParams();
 
-  function getImgInfo() {
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks/' +
+  const fetchImages = async () => {
+    const result = await getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks/' +
         id +
-        '?fields=image_id,title,artist_title,date_display,dimensions,place_of_origin,medium_display,credit_line'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imageInfo) {
-        setImgInfo(parseImage(imageInfo));
-      })
-      .finally(() => setLoading(false));
-  }
-
-  function parseImage(imageInfo: any): ImgProps {
-    const img: ImgProps = {
-      id: id as string,
-      dimensions: imageInfo.data.dimensions,
-      place: imageInfo.data.place_of_origin,
-      title: imageInfo.data.title,
-      artist: imageInfo.data.artist_title,
-      date: imageInfo.data.date_display,
-      credit_line: imageInfo.data.credit_line,
-      medium: imageInfo.data.medium_display,
-      imageURL:
-        imageInfo.config.iiif_url +
-        '/' +
-        imageInfo.data.image_id +
-        '/full/843,/0/default.jpg',
-    };
-    if (imageInfo.data.image_id == null) {
-      img.imageURL = '';
+        '?fields=image_id,title,artist_title,date_display,dimensions,place_of_origin,medium_display,credit_line',
+      setLoading,
+      setError,
+    });
+    if (!result.error) {
+      setImgInfo(parseImageInfo(result));
     }
-    return img;
-  }
+  };
 
   const popUpCloseHandler = () => {
     setError('');
@@ -76,7 +51,7 @@ export default function ImagePage() {
           />
           <Header />
           <main>
-            <ImgSection {...(imgInfo as ImgProps)} />
+            <ImgSection {...(imgInfo as ExtendedImageInformation)} />
           </main>
           <Footer />
         </>

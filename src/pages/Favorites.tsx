@@ -1,4 +1,5 @@
 import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImagesInfo } from '@api/parseImages';
 import ErrorPopUp from '@components/ErrorPopUp';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
@@ -18,14 +19,14 @@ export default function Favorites() {
   const storage = new SessionStorageService();
 
   useEffect(() => {
-    getImages();
+    fetchImages();
   }, []);
 
   const isEmptyTitle = !storage.hasItem(FAVORITES_LIST_KEY) ? (
     <StyledHeading text_start="It's " feature="empty" text_end=" now(" />
   ) : null;
 
-  function getImages() {
+  const fetchImages = async () => {
     if (!storage.hasItem(FAVORITES_LIST_KEY)) {
       return;
     }
@@ -33,16 +34,18 @@ export default function Favorites() {
     if (ids?.length === 0) {
       return;
     }
-    getInfoFromAPI({
+    const result = await getInfoFromAPI({
       request:
         'https://api.artic.edu/api/v1/artworks?ids=' +
         ids +
         '&fields=id,image_id,title,artist_title,date_display',
-      setLoading,
       setError,
-      setImages,
+      setLoading,
     });
-  }
+    if (!result.error) {
+      setImages(parseImagesInfo(result));
+    }
+  };
 
   const popUpCloseHandler = () => {
     setError('');

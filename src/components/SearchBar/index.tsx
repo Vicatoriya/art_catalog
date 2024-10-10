@@ -1,4 +1,4 @@
-import { parseImages } from '@api/parseImages';
+import { parseImagesInfo } from '@api/parseImages';
 import searchImg from '@assets/search.png';
 import ImgList from '@components/ImgList';
 import Loader from '@components/Loader';
@@ -88,7 +88,7 @@ export default function SearchBar() {
         }
       })
       .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
+        setImages(parseImagesInfo(imagesInfo));
       })
       .finally(() => setLoading(false));
   }

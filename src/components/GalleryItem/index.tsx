@@ -14,24 +14,24 @@ import { Image, ItemWrapper } from './styled';
 export default function GalleryItem({
   id,
   title,
-  artist,
-  date,
-  imgURL,
+  artist_title,
+  date_display,
+  image_id,
 }: ImageInformation) {
   const navigate = useNavigate();
-  const [imgSrc, setImgSrc] = useState<string>(imgURL);
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const storage = new SessionStorageService();
 
   useEffect(() => {
-    if (imgURL) {
+    if (image_id) {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
       }, 2500);
-      setImgSrc(imgURL);
+      setImgSrc(image_id);
     }
-  }, [imgURL]);
+  }, [image_id]);
 
   const toggleImgCard = () => {
     navigate('/image/' + id);
@@ -63,7 +63,11 @@ export default function GalleryItem({
         onLoad={handleImageLoad}
         $isLoading={isLoading}
       />
-      <GalleryItemInfo date={date} artist={artist} title={title} />
+      <GalleryItemInfo
+        date={date_display}
+        artist={artist_title}
+        title={title}
+      />
       <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
     </ItemWrapper>
   );

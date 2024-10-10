@@ -1,7 +1,7 @@
 import FavIcon from '@components/FavIcon';
 import { ICONS } from '@constants/Icons';
 import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
-import ImgProps from '@mytypes/ImgProps';
+import ExtendedImageInformation from '@mytypes/ExtendedImageInformation';
 import favClickHandler from '@utils/favoriteClickHandler';
 import SessionStorageService from '@utils/SessionStorageService';
 import { useState } from 'react';
@@ -10,16 +10,16 @@ import { ImageSection, ImageWrapper, InfoSection, Overview } from './styled';
 
 export default function ImgSection({
   id,
-  imageURL,
+  image_id,
   title,
-  artist,
-  date,
-  dimensions,
-  place,
+  artist_title,
+  date_display,
+  datadimensions,
+  place_of_origin,
   credit_line,
   medium,
-}: ImgProps) {
-  const [imgSrc, setImgSrc] = useState<string>(imageURL);
+}: ExtendedImageInformation) {
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
   const storage = new SessionStorageService();
 
   const clickHandler = () => {
@@ -41,17 +41,17 @@ export default function ImgSection({
       <InfoSection>
         <div>
           <h2>{title}</h2>
-          <h3>{artist}</h3>
-          <p id="date">{date}</p>
+          <h3>{artist_title}</h3>
+          <p id="date">{date_display}</p>
         </div>
         <div>
           <h2>Overview</h2>
           <Overview>
             <li>
-              <strong>Artist nationality:</strong> {place}
+              <strong>Artist nationality:</strong> {place_of_origin}
             </li>
             <li>
-              <strong>Dimensions:</strong> {dimensions}
+              <strong>Dimensions:</strong> {datadimensions}
             </li>
             <li>
               <strong>Medium:</strong> {medium}

@@ -15,9 +15,6 @@ export const NavLink = styled.a`
   font-size: 20px;
   text-decoration: none;
   color: white;
-  display: flex;
-  align-items: center;
-
   &:hover {
     color: rgba(224, 164, 73, 1);
   }

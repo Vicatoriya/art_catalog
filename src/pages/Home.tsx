@@ -1,4 +1,5 @@
 import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImagesInfo } from '@api/parseImages';
 import ErrorPopUp from '@components/ErrorPopUp';
 import Footer from '@components/Footer';
 import Gallery from '@components/Gallery';
@@ -20,14 +21,20 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
-  useEffect(() => {
-    getInfoFromAPI({
+  const fetchImages = async () => {
+    const result = await getInfoFromAPI({
       request:
-        'https://api.artic.edu/api/v1/artworks?page=4&fields=id,image_id,title,artist_title,date_display&limit=36',
+        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36',
       setLoading,
       setError,
-      setImages,
     });
+    if (!result.error) {
+      setImages(parseImagesInfo(result));
+    }
+  };
+
+  useEffect(() => {
+    fetchImages();
   }, []);
 
   const popUpCloseHandler = () => {
@@ -55,7 +62,7 @@ export default function Home() {
             <SearchBar />
             <StandardHeading text="Our special gallery" />
             <Gallery
-              images={images.slice(
+              firstImages={images.slice(
                 0,
                 GALLERY_PAGES_AMOUNT * GALLERY_IMAGES_PER_PAGE_AMOUNT
               )}

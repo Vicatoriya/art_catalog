@@ -13,13 +13,13 @@ import { CardWrapper } from './styled';
 export default function ImgCard({
   id,
   title,
-  artist,
-  date,
-  imgURL,
+  artist_title,
+  date_display,
+  image_id,
 }: ImageInformation) {
   const storage = new SessionStorageService();
   const navigate = useNavigate();
-  const [imgSrc, setImgSrc] = useState<string>(imgURL);
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
 
   const toggleImgCard = () => {
     navigate('/image/' + id);
@@ -38,7 +38,7 @@ export default function ImgCard({
   return (
     <CardWrapper onClick={toggleImgCard}>
       <img id="main_pic" src={imgSrc} alt={title} onError={handleError} />
-      <ImgCardInfo date={date} artist={artist} title={title} />
+      <ImgCardInfo date={date_display} artist={artist_title} title={title} />
       <FavIcon isFavorited={isFavorited} clickHandler={clickHandler} />
     </CardWrapper>
   );
