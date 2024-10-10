@@ -1,10 +1,13 @@
 import { ICONS } from '@constants/Icons';
 import FavIconProps from '@mytypes/FavIconProps';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { Icon } from './styled';
 
-export default function FavIcon({ clickHandler, isFavorited }: FavIconProps) {
+const FavIcon = memo(function FavIcon({
+  clickHandler,
+  isFavorited,
+}: FavIconProps) {
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
@@ -25,4 +28,6 @@ export default function FavIcon({ clickHandler, isFavorited }: FavIconProps) {
       />
     </Icon>
   );
-}
+});
+
+export default FavIcon;

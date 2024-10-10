@@ -6,7 +6,7 @@ import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
 import GalleryItemProps from '@mytypes/GalleryItemProps';
 import favClickHandler from '@utils/favoriteClickHandler';
 import SessionStorageService from '@utils/SessionStorageService';
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Image, ItemWrapper } from './styled';
@@ -22,6 +22,10 @@ export default function GalleryItem({
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string>(image_id);
   const storage = new SessionStorageService();
+
+  useEffect(() => {
+    setImgSrc(image_id);
+  }, [image_id]);
 
   const toggleImgCard = () => {
     navigate('/image/' + id);
