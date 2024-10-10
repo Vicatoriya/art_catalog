@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const MenuButton = styled.button`
+  @media (min-width: 420px) {
+    display: none;
+  }
   display: flex;
   flex-direction: column;
   gap: 7px;

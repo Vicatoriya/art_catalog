@@ -1,4 +1,5 @@
 import HamburgerButton from '@components/HamburgerButton';
+import Navigation from '@components/Navigation';
 import SideMenu from '@components/SideMenu';
 import { ICONS } from '@constants/Icons';
 import useOnClickOutside from '@hooks/onClickOutside';
@@ -22,6 +23,7 @@ export default function MainMenu() {
       <Navbar>
         <HamburgerButton />
         <img src={ICONS.logoLight} alt="Logo" />
+        <Navigation></Navigation>
       </Navbar>
       <SideMenu />
     </header>
