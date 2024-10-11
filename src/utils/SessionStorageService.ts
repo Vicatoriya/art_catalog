@@ -27,6 +27,10 @@ export default class SessionStorageService {
     if (index >= 0) {
       array.splice(index, 1);
     }
+    if (array.length == 0) {
+      this.removeItem(key);
+      return;
+    }
     this.setItem(key, array);
   }
 

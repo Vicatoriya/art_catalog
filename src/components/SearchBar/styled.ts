@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const SearchForm = styled.form`
-  margin: 25px 0;
-`;
-
 export const SearchContainer = styled.div<{ $error: boolean }>`
   margin: auto;
   display: flex;

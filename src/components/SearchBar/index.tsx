@@ -22,7 +22,6 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 import {
   ErrorMessage,
   SearchContainer,
-  SearchForm,
   SearchIcon,
   SearchInput,
 } from './styled';
@@ -103,7 +102,7 @@ export default function SearchBar() {
   };
 
   return (
-    <SearchForm>
+    <form>
       <ErrorPopUp
         error={error}
         visible={error != ''}
@@ -131,9 +130,9 @@ export default function SearchBar() {
           <ImgList imgs={sortedImages} />
         </>
       )) ||
-        (formik.values.query != '' && (
+        (formik.values.query != '' && !isLoading && (
           <ErrorMessage>No results found</ErrorMessage>
         ))}
-    </SearchForm>
+    </form>
   );
 }

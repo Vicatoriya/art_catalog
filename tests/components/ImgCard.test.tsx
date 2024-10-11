@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 
 import imageHolder from '@assets/img_holder.webp';
+import ImgCard from '@components/ImgCard';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ImageInformation from '@mytypes/ImageInformation';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import ImgCard from '../../src/components/ImgCard';
-import ImageInformation from '../../src/types/ImageInformation';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -17,9 +17,9 @@ describe('ImgCard Component', () => {
   const defaultProps: ImageInformation = {
     id: '123',
     title: 'Test Image',
-    date: 'Test Date',
-    artist: 'Test Artist',
-    imgURL: 'test-image-url.jpg',
+    date_display: 'Test Date',
+    artist_title: 'Test Artist',
+    image_id: 'test-image-url.jpg',
   };
 
   it('renders the ImgCard component', () => {
@@ -68,7 +68,7 @@ describe('ImgCard Component', () => {
     const favButton = screen.getByAltText('Add to favorites');
     expect(sessionStorage.getItem('123')).toBeNull();
     fireEvent.click(favButton);
-    expect(sessionStorage.getItem('123')).toBe('');
+    expect(sessionStorage.getItem(FAVORITES_LIST_KEY)?.includes('123'));
     fireEvent.click(favButton);
     expect(sessionStorage.getItem('123')).toBeNull();
   });

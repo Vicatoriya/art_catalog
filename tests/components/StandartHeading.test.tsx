@@ -1,9 +1,8 @@
 import '@testing-library/jest-dom';
 
+import StandardHeading from '@components/StandardHeading';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-
-import StandardHeading from '../../src/components/StandardHeading';
 
 describe('StandardHeading Component', () => {
   test('renders StandardHeading without crashing', () => {

@@ -6,10 +6,6 @@ export const Heading = styled.h1`
   text-align: center;
   font-family: Lexend Deca;
 
-  @font-face {
-    font-family: Lexend Deca;
-    src: url(../../assets/LexendDeca-VariableFont_wght.ttf);
-  }
   @media (max-width: 420px) {
     margin: 35px 5%;
     font-size: 35px;

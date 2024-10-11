@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const GalleryWrapper = styled.section`
-  margin-bottom: 50px;
+  max-width: 95%;
+  margin: auto;
   @media (max-width: 420px) {
     margin-bottom: 35px;
     margin-top: 20px;
