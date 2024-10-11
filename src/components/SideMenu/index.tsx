@@ -8,7 +8,7 @@ export default function SideMenu() {
 
   return (
     <Menu open={isMenuOpen}>
-      <MenuLink href="/art_catalog">Main</MenuLink>
+      <MenuLink href="/art_catalog">Home</MenuLink>
       <MenuLink href="/art_catalog/#/favorites">Favorites</MenuLink>
     </Menu>
   );
