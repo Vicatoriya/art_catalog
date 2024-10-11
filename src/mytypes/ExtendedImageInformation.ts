@@ -4,8 +4,8 @@ export default interface ExtendedImageInformation {
   artist_title: string;
   date_display: string;
   image_id: string;
-  datadimensions: string;
+  dimensions: string;
   credit_line: string;
-  medium: string;
+  medium_display: string;
   place_of_origin: string;
 }

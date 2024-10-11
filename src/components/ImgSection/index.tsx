@@ -14,10 +14,10 @@ export default function ImgSection({
   title,
   artist_title,
   date_display,
-  datadimensions,
+  dimensions,
   place_of_origin,
   credit_line,
-  medium,
+  medium_display,
 }: ExtendedImageInformation) {
   const [imgSrc, setImgSrc] = useState<string>(image_id);
   const storage = new SessionStorageService();
@@ -51,10 +51,10 @@ export default function ImgSection({
               <strong>Artist nationality:</strong> {place_of_origin}
             </li>
             <li>
-              <strong>Dimensions:</strong> {datadimensions}
+              <strong>Dimensions:</strong> {dimensions}
             </li>
             <li>
-              <strong>Medium:</strong> {medium}
+              <strong>Medium:</strong> {medium_display}
             </li>
             <li>
               <strong>Credit Line:</strong> {credit_line}
