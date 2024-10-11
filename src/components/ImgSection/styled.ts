@@ -5,8 +5,8 @@ export const ImageWrapper = styled.section`
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 90px 0;
   flex-grow: 1;
+  padding: 50px 25px 0 25px;
 
   @media (max-width: 420px) {
     padding: 20px 15%;

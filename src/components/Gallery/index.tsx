@@ -29,7 +29,7 @@ export default function Gallery({ totalPages }: GalleryProps) {
     const result = await getInfoFromAPI({
       request:
         'https://api.artic.edu/api/v1/artworks?page=' +
-        (2 + page) +
+        (4 + page) +
         '&fields=id,image_id,title,artist_title,date_display&limit=3',
       setLoading,
       setError,
