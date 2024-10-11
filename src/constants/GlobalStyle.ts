@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction:column;
     justify-content:space-between;
     min-height:100vh;
-    background-color: ;
+    background-color: rgba(250, 250, 250, 1);
   }
 
   main{

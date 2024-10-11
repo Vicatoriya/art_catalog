@@ -31,7 +31,7 @@ export default function ImgSection({
   };
 
   const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
-
+  console.log(id);
   return (
     <ImageWrapper>
       <ImageSection>

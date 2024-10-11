@@ -26,7 +26,7 @@ export default function ImagePage() {
       request:
         'https://api.artic.edu/api/v1/artworks/' +
         id +
-        '?fields=image_id,title,artist_title,date_display,dimensions,place_of_origin,medium_display,credit_line',
+        '?fields=id,image_id,title,artist_title,date_display,dimensions,place_of_origin,medium_display,credit_line',
       setLoading,
       setError,
     });
