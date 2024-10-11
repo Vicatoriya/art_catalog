@@ -28,7 +28,7 @@ export const ImageSection = styled.div`
 
 export const InfoSection = styled.div`
   flex: 2;
-  color: #333;
+  color: rgba(51, 51, 51, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,7 +66,7 @@ export const InfoSection = styled.div`
 
 export const Overview = styled.div`
   list-style: none;
-  color: #666;
+  color: rgba(102, 102, 102, 1);
   line-height: 1.8;
 
   & strong {

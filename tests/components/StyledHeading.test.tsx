@@ -1,7 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import StyledHeading from '../../src/components/StyledHeading';
 import '@testing-library/jest-dom';
+
+import StyledHeading from '@components/StyledHeading';
+import { render, screen } from '@testing-library/react';
+import React from 'react';
 
 describe('StyledHeading Component', () => {
   test('renders StyledHeading without crashing', () => {

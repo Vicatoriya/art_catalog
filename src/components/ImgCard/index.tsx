@@ -1,38 +1,45 @@
-import { useState } from 'react';
-import { CardWrapper } from './styled';
-import ImgCardInfo from '@components/ImgCardInfo';
-import { useNavigate } from 'react-router-dom';
-import ImageInformation from '../../types/ImageInformation';
 import FavIcon from '@components/FavIcon';
-import imageHolder from '@assets/img_holder.webp';
+import ImgCardInfo from '@components/ImgCardInfo';
+import { ICONS } from '@constants/Icons';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ImageInformation from '@mytypes/ImageInformation';
+import favClickHandler from '@utils/favoriteClickHandler';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function ImgCard(props: ImageInformation) {
+import { CardWrapper } from './styled';
+
+export default function ImgCard({
+  id,
+  title,
+  artist_title,
+  date_display,
+  image_id,
+}: ImageInformation) {
+  const storage = new SessionStorageService();
   const navigate = useNavigate();
-  const [imgSrc, setImgSrc] = useState<string>(props.imgURL);
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
 
   const toggleImgCard = () => {
-    navigate('/image/' + props.id);
-  };
-
-  const addToFavClickHandler = () => {
-    if (sessionStorage.getItem(props.id) != null) {
-      sessionStorage.removeItem(props.id);
-    } else {
-      sessionStorage.setItem(props.id, '');
-    }
+    navigate('/image/' + id);
   };
 
   const handleError = () => {
-    setImgSrc(imageHolder);
+    setImgSrc(ICONS.imgHolder);
   };
 
-  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const clickHandler = () => {
+    favClickHandler(id, storage);
+  };
+
+  const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
 
   return (
     <CardWrapper onClick={toggleImgCard}>
-      <img id="main_pic" src={imgSrc} alt={props.title} onError={handleError} />
-      <ImgCardInfo {...props} />
-      <FavIcon isFavorited={isFavorited} clickHandler={addToFavClickHandler} />
+      <img id="main_pic" src={imgSrc} alt={title} onError={handleError} />
+      <ImgCardInfo date={date_display} artist={artist_title} title={title} />
+      <FavIcon isFavorited={isFavorited} clickHandler={clickHandler} />
     </CardWrapper>
   );
 }

@@ -16,8 +16,9 @@ export const PageButton = styled.button<{ $active?: boolean }>`
   margin: 0 5px;
   padding: 5px 10px;
   border: none;
-  background-color: ${(props) => (props.$active ? '#e67e22' : 'transparent')};
-  color: ${(props) => (props.$active ? '#fff' : '#333')};
+  background-color: ${(props) =>
+    props.$active ? 'rgba(230, 126, 34, 1)' : 'transparent'};
+  color: ${(props) => (props.$active ? 'white' : 'rgba(51, 51, 51, 1)')};
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
@@ -29,12 +30,13 @@ export const PageButton = styled.button<{ $active?: boolean }>`
   }
 
   &:hover {
-    background-color: ${(props) => (props.$active ? '#d35400' : '#f2f2f2')};
+    background-color: ${(props) =>
+      props.$active ? 'rgba(211, 84, 0, 1)' : 'rgba(242, 242, 242, 1)'};
   }
 
   &:disabled {
     cursor: default;
-    color: #bbb;
+    color: rgba(187, 187, 187, 1);
   }
 `;
 

@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import SortSelector from '../../src/components/SortSelector';
-import React from 'react';
 import '@testing-library/jest-dom';
+
+import SortSelector from '@components/SortSelector';
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 
 describe('SortSelector component', () => {
   const mockOnSortChange = jest.fn();
@@ -36,9 +37,9 @@ describe('SortSelector component', () => {
   test('calls onSortChange when a new option is selected', () => {
     renderComponent('title');
     fireEvent.change(screen.getByLabelText(/sort by/i), {
-      target: { value: 'artist' },
+      target: { value: 'artist_title' },
     });
     expect(mockOnSortChange).toHaveBeenCalledTimes(1);
-    expect(mockOnSortChange).toHaveBeenCalledWith('artist');
+    expect(mockOnSortChange).toHaveBeenCalledWith('artist_title');
   });
 });

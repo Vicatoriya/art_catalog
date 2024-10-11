@@ -1,58 +1,56 @@
-import { useState, useEffect } from 'react';
-import ImgList from '@components/ImgList';
-import Heading from '@components/StandardHeading';
-import StyledHeading from '@components/StyledHeading';
-import Header from '@components/Header';
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImagesInfo } from '@api/parseImages';
+import ErrorPopUp from '@components/ErrorPopUp';
 import Footer from '@components/Footer';
-import ImageInformation from '../types/ImageInformation';
+import Header from '@components/Header';
+import ImgList from '@components/ImgList';
 import Loader from '@components/Loader';
-import { parseImages } from '../utils/parseImages';
+import StandardHeading from '@components/StandardHeading';
+import StyledHeading from '@components/StyledHeading';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ImageInformation from '@mytypes/ImageInformation';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useEffect, useState } from 'react';
 
 export default function Favorites() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+  const storage = new SessionStorageService();
 
   useEffect(() => {
-    getImages();
-  }, Object.keys(sessionStorage));
+    fetchImages();
+  }, []);
 
-  const isEmptyTitle =
-    Object.values(sessionStorage).filter((value) => {
-      return value === '';
-    }).length == 0 ? (
-      <StyledHeading
-        text_start="It's "
-        feature="empty"
-        text_end=" now("
-      ></StyledHeading>
-    ) : null;
+  const isEmptyTitle = !storage.hasItem(FAVORITES_LIST_KEY) ? (
+    <StyledHeading text_start="It's " feature="empty" text_end=" now(" />
+  ) : null;
 
-  function getImages() {
-    const ids = Object.keys(sessionStorage)
-      .filter((value) => {
-        return sessionStorage.getItem(value) === '';
-      })
-      .join(',');
-    if (ids.length === 0) {
+  const fetchImages = async () => {
+    if (!storage.hasItem(FAVORITES_LIST_KEY)) {
       return;
     }
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks?ids=' +
+    const ids = storage.getItem<Array<string>>(FAVORITES_LIST_KEY)?.join(',');
+    if (ids?.length === 0) {
+      return;
+    }
+    const result = await getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks?ids=' +
         ids +
-        '&fields=id,image_id,title,artist_title,date_display'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
-      })
-      .finally(() => setLoading(false));
-  }
+        '&fields=id,image_id,title,artist_title,date_display',
+      setError,
+      setLoading,
+    });
+    if (result !== null) {
+      setImages(parseImagesInfo(result as ImagesAPIData));
+    }
+  };
+
+  const popUpCloseHandler = () => {
+    setError('');
+  };
 
   return (
     <>
@@ -60,6 +58,11 @@ export default function Favorites() {
         <Loader />
       ) : (
         <>
+          <ErrorPopUp
+            error={error}
+            visible={error != ''}
+            onClose={popUpCloseHandler}
+          />
           <Header />
           <main>
             <StyledHeading
@@ -67,7 +70,7 @@ export default function Favorites() {
               feature="Favorites"
               text_end=""
             />
-            <Heading text="Your favorites list"></Heading>
+            <StandardHeading text="Your favorites list" />
             <ImgList imgs={images} />
             {isEmptyTitle}
           </main>

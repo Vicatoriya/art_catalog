@@ -1,7 +1,7 @@
 export default interface ImageInformation {
   id: string;
   title: string;
-  artist: string;
-  imgURL: string;
-  date: string;
+  artist_title: string;
+  date_display: string;
+  image_id: string;
 }

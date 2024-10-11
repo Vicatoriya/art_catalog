@@ -1,7 +1,8 @@
-import { InfoWrapper } from './styled';
-import ImageInformation from '../../types/ImageInformation';
+import ImageInfoProps from '@mytypes/ImageInfoProps';
 
-export default function ImgCardInfo(props: ImageInformation) {
+import { InfoWrapper } from './styled';
+
+export default function ImgCardInfo(props: ImageInfoProps) {
   return (
     <InfoWrapper>
       <p id="title">{props.title}</p>

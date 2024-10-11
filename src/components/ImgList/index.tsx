@@ -1,14 +1,9 @@
-import { ImgListWrapper } from './styled';
 import ImgCard from '@components/ImgCard';
-import ImageInformation from '../../types/ImageInformation';
+import ImgListProps from '@mytypes/ImgListProps';
 
-interface ImgListProps {
-  imgs: Array<ImageInformation>;
-}
+import { ImgListWrapper } from './styled';
 
-export default function ImgList(props: ImgListProps) {
-  const cards = props.imgs.map((value) => (
-    <ImgCard {...value} key={value.id} />
-  ));
+export default function ImgList({ imgs }: ImgListProps) {
+  const cards = imgs.map((value) => <ImgCard {...value} key={value.id} />);
   return <ImgListWrapper>{cards}</ImgListWrapper>;
 }

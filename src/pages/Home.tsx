@@ -1,40 +1,43 @@
-import { useEffect, useState } from 'react';
-import SearchBar from '@components/SearchBar';
-import Gallery from '@components/Gallery';
-import ImgList from '@components/ImgList';
-import Heading from '@components/StandardHeading';
-import Header from '@components/Header';
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImagesInfo } from '@api/parseImages';
+import ErrorPopUp from '@components/ErrorPopUp';
 import Footer from '@components/Footer';
+import Gallery from '@components/Gallery';
+import Header from '@components/Header';
+import ImgList from '@components/ImgList';
 import Loader from '@components/Loader';
-import ImageInformation from '../types/ImageInformation';
+import SearchBar from '@components/SearchBar';
+import StandardHeading from '@components/StandardHeading';
 import StyledHeading from '@components/StyledHeading';
-import { parseImages } from '../utils/parseImages';
+import { GALLERY_PAGES_AMOUNT } from '@constants/GalleryConstants';
+import ImageInformation from '@mytypes/ImageInformation';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const totalSpecialGalleryPages = 10;
+  const [error, setError] = useState<string>('');
+
+  const fetchImages = async () => {
+    const result = await getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=6',
+      setLoading,
+      setError,
+    });
+    if (result !== null) {
+      setImages(parseImagesInfo(result as ImagesAPIData));
+    }
+  };
 
   useEffect(() => {
-    getImages();
+    fetchImages();
   }, []);
 
-  function getImages() {
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks?page=2&fields=id,image_id,title,artist_title,date_display&limit=36'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
-      })
-      .finally(() => setLoading(false));
-  }
+  const popUpCloseHandler = () => {
+    setError('');
+  };
 
   return (
     <>
@@ -42,6 +45,11 @@ export default function Home() {
         <Loader />
       ) : (
         <>
+          <ErrorPopUp
+            error={error}
+            visible={error !== ''}
+            onClose={popUpCloseHandler}
+          />
           <Header />
           <main>
             <StyledHeading
@@ -50,13 +58,10 @@ export default function Home() {
               text_end=" Here!"
             />
             <SearchBar />
-            <Heading text="Our special gallery" />
-            <Gallery
-              images={images.slice(0, totalSpecialGalleryPages * 3)}
-              totalPages={totalSpecialGalleryPages}
-            />
-            <Heading text="Other works for you" />
-            <ImgList imgs={images.slice(-6)} />
+            <StandardHeading text="Our special gallery" />
+            <Gallery totalPages={GALLERY_PAGES_AMOUNT} />
+            <StandardHeading text="Other works for you" />
+            <ImgList imgs={images} />
           </main>
           <Footer />
         </>

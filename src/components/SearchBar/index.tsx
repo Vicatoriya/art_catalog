@@ -1,106 +1,85 @@
-import { useState, useEffect } from 'react';
-import searchImg from '@assets/search.png';
-import ImageInformation from '../../types/ImageInformation';
+import getInfoFromAPI from '@api/getInfoFromAPI';
+import { parseImagesInfo } from '@api/parseImages';
+import ErrorPopUp from '@components/ErrorPopUp';
 import ImgList from '@components/ImgList';
-import StandardHeading from '@components/StandardHeading';
 import Loader from '@components/Loader';
 import SortSelector from '@components/SortSelector';
-import { parseImages } from '../../utils/parseImages';
+import StandardHeading from '@components/StandardHeading';
+import { ICONS } from '@constants/Icons';
 import {
+  QUERY_KEY,
+  SORT_SELECTOR_KEY,
+} from '@constants/SessionStorageConstants';
+import useDebounce from '@hooks/useDebounce';
+import ImageInformation from '@mytypes/ImageInformation';
+import ImagesAPIData from '@mytypes/ImagesAPIData';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+
+import {
+  ErrorMessage,
   SearchContainer,
   SearchIcon,
   SearchInput,
-  SearchForm,
-  ErrorMessage,
 } from './styled';
 
 export default function SearchBar() {
   const [images, setImages] = useState<Array<ImageInformation>>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [query, setQuery] = useState<string>(() => {
-    return sessionStorage.getItem('lastQuery') ?? '';
-  });
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
-  const [isResultsVisible, setisResultsVisible] = useState<boolean>(false);
+  const storage = new SessionStorageService();
   const [sortCriteria, setSortCriteria] = useState<string>(() => {
-    return sessionStorage.getItem('lastSortCriteria') ?? '';
+    return storage.getItem(SORT_SELECTOR_KEY) ?? 'title';
   });
+  const queryInitialValue: string = storage.getItem(QUERY_KEY) ?? '';
+  const ValidationShema = z
+    .object({
+      query: z
+        .string()
+        .min(3, 'Enter at least 3 characters')
+        .regex(/[a-zA-Z0-9\s]/, 'Invalid characters in search query'),
+    })
+    .optional()
+    .or(z.literal(''));
+  const formik = useFormik({
+    initialValues: { query: queryInitialValue },
+    validationSchema: toFormikValidationSchema(ValidationShema),
+    onSubmit: () => {
+      console.log();
+    },
+  });
+
+  const debouncedSearchTerm = useDebounce(formik.values.query, 500);
 
   useEffect(() => {
-    if (!error) {
-      debouncedSearch(query);
-    }
-  }, [query, error]);
-
-  const debounce = (func: (...args: any[]) => void, delay: number) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    return (...args: any[]) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func(...args), delay);
-    };
-  };
-
-  const debouncedSearch = debounce(findImages, 500);
-
-  const validateSearch = (input: string) => {
-    if (input.length == 0) {
+    if (debouncedSearchTerm && formik.errors.query === undefined) {
+      fetchImages();
+      storage.setItem(QUERY_KEY, formik.values.query);
+    } else {
       setImages([]);
-      sessionStorage.removeItem('lastSortCriteria');
-      sessionStorage.removeItem('lastQuery');
-      setisResultsVisible(false);
-      setError('');
-      return;
     }
-    if (input.length < 3) {
-      setImages([]);
-      setisResultsVisible(false);
-      setError('Enter at least 3 characters');
-      return;
-    }
-    if (/[^a-zA-Z0-9\s]/.test(input)) {
-      setImages([]);
-      setisResultsVisible(false);
-      setError('Invalid characters in search query');
-      return;
-    }
-    setError('');
-    return;
-  };
+  }, [debouncedSearchTerm]);
 
-  function findImages(q: string) {
-    if (q.length === 0) {
-      return;
+  const fetchImages = async () => {
+    const result = await getInfoFromAPI({
+      request:
+        'https://api.artic.edu/api/v1/artworks/search?q=' +
+        formik.values.query +
+        '&fields=id,image_id,title,artist_title,date_display',
+      setLoading,
+      setError,
+    });
+    if (result !== null) {
+      setImages(parseImagesInfo(result as ImagesAPIData));
     }
-    sessionStorage.setItem('lastQuery', q);
-    setisResultsVisible(true);
-    setLoading(true);
-    fetch(
-      'https://api.artic.edu/api/v1/artworks/search?q=' +
-        q +
-        '&fields=id,image_id,title,artist_title,date_display'
-    )
-      .then(function (response) {
-        if (response.ok) return response.json();
-        else {
-          alert('HTTP error: ' + response.status);
-        }
-      })
-      .then(function (imagesInfo) {
-        setImages(parseImages(imagesInfo));
-      })
-      .finally(() => setLoading(false));
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const q = e.target.value;
-    setQuery(q);
-    validateSearch(q);
   };
 
   const handleSortChange = (criteria: string) => {
     setSortCriteria(criteria);
-    sessionStorage.setItem('lastSortCriteria', criteria);
+    storage.setItem(SORT_SELECTOR_KEY, criteria);
   };
 
   const sortedImages = [...images].sort((a, b) => {
@@ -110,22 +89,38 @@ export default function SearchBar() {
     return fieldA ? (fieldB ? fieldA.localeCompare(fieldB) : -1) : 1;
   });
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formik.handleChange(e);
+    if (e.target.value == '') {
+      storage.removeItem(QUERY_KEY);
+      storage.removeItem(SORT_SELECTOR_KEY);
+    }
+  };
+
+  const popUpCloseHandler = () => {
+    setError('');
+  };
+
   return (
-    <SearchForm>
-      <SearchContainer $error={error !== ''}>
+    <form>
+      <ErrorPopUp
+        error={error}
+        visible={error != ''}
+        onClose={popUpCloseHandler}
+      />
+      <SearchContainer $error={formik.errors.query != undefined}>
         <SearchInput
-          type="text"
-          value={query}
-          placeholder="Search Art, Artist, Work..."
-          onChange={(e) => handleInputChange(e)}
-        />
+          name="query"
+          onChange={onChangeHandler}
+          value={formik.values.query}
+        ></SearchInput>
         <SearchIcon>
-          <img src={searchImg} alt="Search icon"></img>
+          <img src={ICONS.search} alt="Search icon"></img>
         </SearchIcon>
       </SearchContainer>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      {loading && <Loader />}
-      {images.length > 0 && isResultsVisible && query !== '' && (
+      <ErrorMessage>{formik.errors.query}</ErrorMessage>
+      {isLoading && <Loader />}
+      {(images.length != 0 && (
         <>
           <StandardHeading text="Search results" />
           <SortSelector
@@ -134,8 +129,10 @@ export default function SearchBar() {
           />
           <ImgList imgs={sortedImages} />
         </>
-      )}
-      {images.length === 0 && isResultsVisible && <p>No results found</p>}
-    </SearchForm>
+      )) ||
+        (formik.values.query != '' && !isLoading && (
+          <ErrorMessage>No results found</ErrorMessage>
+        ))}
+    </form>
   );
 }

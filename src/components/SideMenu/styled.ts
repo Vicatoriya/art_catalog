@@ -1,11 +1,7 @@
+import { ICONS } from '@constants/Icons';
 import styled, { css } from 'styled-components';
-import arrow from '../../assets/arrow.svg';
 
-interface MenuProps {
-  open: boolean;
-}
-
-export const Menu = styled.nav<MenuProps>`
+export const Menu = styled.nav<{ open: boolean }>`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -17,7 +13,7 @@ export const Menu = styled.nav<MenuProps>`
   padding-top: 110px;
   padding-right: 0px;
   align-items: stretch;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 1);
   transform: translateX(-100%);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -40,13 +36,13 @@ export const MenuLink = styled.a`
   margin-top: 25px;
   margin-bottom: 25px;
   padding-left: 16%;
-  background-image: url(${arrow});
+  background-image: url(${ICONS.arrow});
   background-position: 85% 50%;
   background-size: 36px;
   background-repeat: no-repeat;
   transition: background-position 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
   text-decoration: none;
-  color: #fff;
+  color: white;
   font-size: 32px;
   line-height: 120%;
   font-weight: 500;

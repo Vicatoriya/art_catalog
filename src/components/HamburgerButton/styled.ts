@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MenuButton = styled.button`
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 7px;
   float: left;
@@ -15,6 +15,7 @@ export const MenuButton = styled.button`
     padding: 6px;
     gap: 5px;
     margin-right: 15px;
+    display: flex;
   }
   & span {
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -79,7 +80,7 @@ export const Bar = styled.span`
   display: block;
   width: 40px;
   height: 5px;
-  background-color: #fff;
+  background-color: white;
 
   @media (max-width: 420px) {
     width: 28px;

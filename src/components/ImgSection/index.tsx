@@ -1,66 +1,63 @@
-import { useState } from 'react';
-import { ImageWrapper, ImageSection, InfoSection, Overview } from './styled';
 import FavIcon from '@components/FavIcon';
-import imageHolder from '@assets/img_holder.webp';
+import { ICONS } from '@constants/Icons';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import ExtendedImageInformation from '@mytypes/ExtendedImageInformation';
+import favClickHandler from '@utils/favoriteClickHandler';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useState } from 'react';
 
-export interface ImageProps {
-  id: string;
-  imageURL: string;
-  title: string;
-  artist: string;
-  date: string;
-  dimensions: string;
-  place: string;
-  credit_line: string;
-  medium: string;
-}
+import { ImageSection, ImageWrapper, InfoSection, Overview } from './styled';
 
-export default function ImgSection(props: ImageProps) {
-  const [imgSrc, setImgSrc] = useState<string>(props.imageURL);
+export default function ImgSection({
+  id,
+  image_id,
+  title,
+  artist_title,
+  date_display,
+  datadimensions,
+  place_of_origin,
+  credit_line,
+  medium,
+}: ExtendedImageInformation) {
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
+  const storage = new SessionStorageService();
 
-  const addToFavClickHandler = () => {
-    if (sessionStorage.getItem(props.id) != null) {
-      sessionStorage.removeItem(props.id);
-    } else {
-      sessionStorage.setItem(props.id, '');
-    }
+  const clickHandler = () => {
+    favClickHandler(id, storage);
   };
 
   const handleError = () => {
-    setImgSrc(imageHolder);
+    setImgSrc(ICONS.imgHolder);
   };
 
-  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
 
   return (
     <ImageWrapper>
       <ImageSection>
-        <img src={imgSrc} alt={props.title} id="main" onError={handleError} />
-        <FavIcon
-          clickHandler={addToFavClickHandler}
-          isFavorited={isFavorited}
-        />
+        <img src={imgSrc} alt={title} id="main" onError={handleError} />
+        <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
       </ImageSection>
       <InfoSection>
         <div>
-          <h2>{props.title}</h2>
-          <h3>{props.artist}</h3>
-          <p id="date">{props.date}</p>
+          <h2>{title}</h2>
+          <h3>{artist_title}</h3>
+          <p id="date">{date_display}</p>
         </div>
         <div>
           <h2>Overview</h2>
           <Overview>
             <li>
-              <strong>Artist nationality:</strong> {props.place}
+              <strong>Artist nationality:</strong> {place_of_origin}
             </li>
             <li>
-              <strong>Dimensions:</strong> {props.dimensions}
+              <strong>Dimensions:</strong> {datadimensions}
             </li>
             <li>
-              <strong>Medium:</strong> {props.medium}
+              <strong>Medium:</strong> {medium}
             </li>
             <li>
-              <strong>Credit Line:</strong> {props.credit_line}
+              <strong>Credit Line:</strong> {credit_line}
             </li>
           </Overview>
         </div>

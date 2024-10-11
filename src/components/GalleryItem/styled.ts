@@ -4,7 +4,7 @@ export const ItemWrapper = styled.div`
     display:flex;
     position:relative;
     flex-direction:column;
-    background-color: white;
+    background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 260px;
@@ -19,10 +19,11 @@ export const ItemWrapper = styled.div`
       height:270px;
     }
 `;
-export const Image = styled.img`
+export const Image = styled.img<{ $isLoading: boolean }>`
   width: 100%;
   height: 80%;
   object-fit: cover;
+  display: ${(props) => (props.$isLoading ? 'none' : 'block')};
 
   @media (max-width: 420px) {
     height: 75%;

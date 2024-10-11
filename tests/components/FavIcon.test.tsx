@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import FavIcon from '../../src/components/FavIcon';
+
+import FavIcon from '@components/FavIcon';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 describe('FavIcon Component', () => {

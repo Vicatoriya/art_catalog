@@ -1,45 +1,44 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ItemWrapper, Image } from './styled';
-import ImageInformation from '../../types/ImageInformation';
-import GalleryItemInfo from '@components/GalIeryItemInfo';
 import FavIcon from '@components/FavIcon';
-import imageHolder from '@assets/img_holder.webp';
+import GalleryItemInfo from '@components/GalIeryItemInfo';
 import Loader from '@components/Loader';
+import { ICONS } from '@constants/Icons';
+import { FAVORITES_LIST_KEY } from '@constants/SessionStorageConstants';
+import GalleryItemProps from '@mytypes/GalleryItemProps';
+import favClickHandler from '@utils/favoriteClickHandler';
+import SessionStorageService from '@utils/SessionStorageService';
+import { useEffect,useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function GalleryItem(props: ImageInformation) {
+import { Image, ItemWrapper } from './styled';
+
+export default function GalleryItem({
+  id,
+  title,
+  artist_title,
+  date_display,
+  image_id,
+  isLoading,
+}: GalleryItemProps) {
   const navigate = useNavigate();
-  const [imgSrc, setImgSrc] = useState<string>(props.imgURL);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [imgSrc, setImgSrc] = useState<string>(image_id);
+  const storage = new SessionStorageService();
 
   useEffect(() => {
-    if (props.imgURL) {
-      setIsLoading(true);
-      setImgSrc(props.imgURL);
-    }
-  }, [props.imgURL]);
+    setImgSrc(image_id);
+  }, [image_id]);
 
   const toggleImgCard = () => {
-    navigate('/image/' + props.id);
+    navigate('/image/' + id);
   };
 
-  const addToFavClickHandler = () => {
-    if (sessionStorage.getItem(props.id) != null) {
-      sessionStorage.removeItem(props.id);
-    } else {
-      sessionStorage.setItem(props.id, '');
-    }
+  const clickHandler = () => {
+    favClickHandler(id, storage);
   };
 
-  const isFavorited: boolean = sessionStorage.getItem(props.id) != null;
+  const isFavorited = storage.hasItemInArray(FAVORITES_LIST_KEY, id);
 
   const handleError = () => {
-    setImgSrc(imageHolder);
-    setIsLoading(false);
-  };
-
-  const handleImageLoad = () => {
-    setIsLoading(false);
+    setImgSrc(ICONS.imgHolder);
   };
 
   return (
@@ -47,14 +46,17 @@ export default function GalleryItem(props: ImageInformation) {
       {isLoading && <Loader />}
       <Image
         src={imgSrc}
-        alt={props.title}
+        alt={title}
         onError={handleError}
         role="mainImg"
-        onLoad={handleImageLoad}
-        style={{ display: isLoading ? 'none' : 'block' }}
+        $isLoading={isLoading}
       />
-      <GalleryItemInfo {...props} />
-      <FavIcon clickHandler={addToFavClickHandler} isFavorited={isFavorited} />
+      <GalleryItemInfo
+        date={date_display}
+        artist={artist_title}
+        title={title}
+      />
+      <FavIcon clickHandler={clickHandler} isFavorited={isFavorited} />
     </ItemWrapper>
   );
 }

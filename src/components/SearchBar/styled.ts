@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 
-export const SearchForm = styled.form`
-  margin: 25px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-`;
-
 export const SearchContainer = styled.div<{ $error: boolean }>`
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: ${(props) => (props.$error ? '2px solid red' : 'none')};
-  background-color: #f5f5f5;
+  border: ${(props) => (props.$error ? '2px solid red;' : 'none')};
+  background-color: rgb(245, 245, 245);
   border-radius: 25px;
   padding: 10px 20px;
   width: 80%;
@@ -27,10 +20,10 @@ export const SearchInput = styled.input`
   outline: none;
   flex: 1;
   font-size: 16px;
-  color: #777;
+  color: rgba(119, 119, 119, 1);
 
   ::placeholder {
-    color: #aaa;
+    color: rgba(170, 170, 170, 1);
   }
 `;
 
@@ -44,12 +37,13 @@ export const SearchIcon = styled.button`
   img {
     width: 20px;
     height: 20px;
-    color: #555;
+    color: rgba(85, 85, 85, 1);
   }
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.div`
   color: red;
   font-size: 15px;
+  text-align: center;
   text-align: center;
 `;

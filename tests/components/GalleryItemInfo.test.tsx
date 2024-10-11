@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import GalleryItemInfo from '../../src/components/GalIeryItemInfo';
-import ImageInformation from '../../src/types/ImageInformation';
 import '@testing-library/jest-dom';
+
+import GalleryItemInfo from '@components/GalIeryItemInfo';
+import ImageInformation from '@mytypes/ImageInformation';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 describe('GalleryItemInfo component', () => {

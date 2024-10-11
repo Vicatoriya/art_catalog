@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SelectWrapper = styled.div`
   margin-bottom: 20px;
-
+  text-align: center;
   @media (max-width: 420px) {
     margin-bottom: 0;
   }

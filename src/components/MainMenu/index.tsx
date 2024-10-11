@@ -1,10 +1,12 @@
-import { useRef, useContext } from 'react';
-import useOnClickOutside from '../../hooks/onClickOutside';
-import { MenuContext } from '@components/NavState';
 import HamburgerButton from '@components/HamburgerButton';
+import Navigation from '@components/Navigation';
 import SideMenu from '@components/SideMenu';
+import { ICONS } from '@constants/Icons';
+import useOnClickOutside from '@hooks/onClickOutside';
+import { MenuContext } from '@utils/MenuContext';
+import { useContext, useRef } from 'react';
+
 import { Navbar } from './styled';
-import logo from '@assets/logo_light.png';
 
 export default function MainMenu() {
   const node = useRef<HTMLElement>(null);
@@ -20,7 +22,8 @@ export default function MainMenu() {
     <header ref={node}>
       <Navbar>
         <HamburgerButton />
-        <img src={logo} alt="Logo" />
+        <img src={ICONS.logoLight} alt="Logo" />
+        <Navigation></Navigation>
       </Navbar>
       <SideMenu />
     </header>

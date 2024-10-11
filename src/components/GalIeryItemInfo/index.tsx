@@ -1,12 +1,17 @@
-import { InfoWrapper, SingleLineEllipsis } from './styled';
-import ImageInformation from '../../types/ImageInformation';
+import ImageInfoProps from '@mytypes/ImageInfoProps';
 
-export default function GalleryItemInfo(props: ImageInformation) {
+import { InfoWrapper, SingleLineEllipsis } from './styled';
+
+export default function GalleryItemInfo({
+  title,
+  artist,
+  date,
+}: ImageInfoProps) {
   return (
     <InfoWrapper>
-      <SingleLineEllipsis id="title">{props.title}</SingleLineEllipsis>
-      <SingleLineEllipsis id="artist">{props.artist}</SingleLineEllipsis>
-      <SingleLineEllipsis id="date">{props.date}</SingleLineEllipsis>
+      <SingleLineEllipsis id="title">{title}</SingleLineEllipsis>
+      <SingleLineEllipsis id="artist">{artist}</SingleLineEllipsis>
+      <SingleLineEllipsis id="date">{date}</SingleLineEllipsis>
     </InfoWrapper>
   );
 }
