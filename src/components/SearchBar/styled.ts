@@ -2,13 +2,10 @@ import styled from 'styled-components';
 
 export const SearchForm = styled.form`
   margin: 25px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
 `;
 
 export const SearchContainer = styled.div<{ $error: boolean }>`
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,8 +45,9 @@ export const SearchIcon = styled.button`
   }
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.div`
   color: red;
   font-size: 15px;
+  text-align: center;
   text-align: center;
 `;

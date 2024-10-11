@@ -11,8 +11,10 @@ export default function SortSelector({
     onSortChange(e.target.value);
   };
 
-  const optionsList = SORT_OPTIONS.map((option) => (
-    <option key={option}>{option}</option>
+  const optionsList = Object.entries(SORT_OPTIONS).map(([key, value]) => (
+    <option key={key} value={key}>
+      {value}
+    </option>
   ));
 
   return (
